@@ -1,0 +1,417 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.3
+-- Dumped by pg_dump version 10.3
+
+-- Started on 2019-06-13 18:11:07
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12924)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2864 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 196 (class 1259 OID 722545)
+-- Name: id_cliente_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_cliente_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_cliente_sequence OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 199 (class 1259 OID 722561)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cliente (
+    id integer DEFAULT nextval('public.id_cliente_sequence'::regclass) NOT NULL,
+    nome character varying(80),
+    sobrenome character varying(80),
+    sexo character varying(1),
+    datacadastro character varying(11),
+    situacao integer,
+    rg character varying(10),
+    cpf character varying(11),
+    cnpj character varying(14),
+    email character varying(255),
+    telefone character varying(20),
+    celular character varying(20),
+    pais character varying(50),
+    estado character varying(50),
+    cidade character varying(50),
+    bairro character varying(50),
+    rua character varying(100),
+    numero character varying(10),
+    cep character varying(8),
+    complemento character varying(50)
+);
+
+
+ALTER TABLE public.cliente OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 747262)
+-- Name: id_fornecedor_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_fornecedor_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_fornecedor_sequence OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 747270)
+-- Name: fornecedor; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.fornecedor (
+    id integer DEFAULT nextval('public.id_fornecedor_sequence'::regclass) NOT NULL,
+    datacadastro character varying(40),
+    nome character varying(100),
+    situacao integer,
+    cnpj character varying(20),
+    email character varying,
+    telefone character varying(20),
+    celular character varying(20),
+    pais character varying(40),
+    estado character varying(40),
+    cidade character varying(40),
+    bairro character varying(40),
+    rua character varying(100),
+    numero character varying(8),
+    cep character varying(10)
+);
+
+
+ALTER TABLE public.fornecedor OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 755522)
+-- Name: id_funcionario_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_funcionario_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_funcionario_sequence OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 755527)
+-- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.funcionario (
+    id integer DEFAULT nextval('public.id_funcionario_sequence'::regclass) NOT NULL,
+    nome character varying(40),
+    sobrenome character varying(40),
+    rg character varying(9),
+    cpf character varying(11),
+    sexo character varying(1),
+    email character varying(150),
+    telefone character varying(20),
+    celular character varying(20),
+    pais character varying(60),
+    estado character varying(200),
+    cidade character varying(200),
+    rua character varying(100),
+    numero character varying(8),
+    cep character varying(10),
+    complemento character varying(100),
+    datacadastro character varying(255),
+    situacao integer
+);
+
+
+ALTER TABLE public.funcionario OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 960523)
+-- Name: id_itemorcamento_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_itemorcamento_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_itemorcamento_sequence OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 960475)
+-- Name: id_orcamento_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_orcamento_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_orcamento_sequence OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 730817)
+-- Name: id_produto_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_produto_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_produto_sequence OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 722553)
+-- Name: id_usuario_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.id_usuario_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_usuario_sequence OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 960721)
+-- Name: itemorcamento; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.itemorcamento (
+    id integer DEFAULT nextval('public.id_itemorcamento_sequence'::regclass) NOT NULL,
+    idorcamento integer NOT NULL,
+    idproduto integer NOT NULL,
+    quantidade integer NOT NULL,
+    datainicio character varying(40),
+    datafim character varying(40),
+    status integer
+);
+
+
+ALTER TABLE public.itemorcamento OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 960702)
+-- Name: orcamento; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orcamento (
+    id integer DEFAULT nextval('public.id_orcamento_sequence'::regclass) NOT NULL,
+    idcliente integer NOT NULL,
+    idresponsavel integer NOT NULL,
+    relatorio text,
+    datainsercao character varying(40),
+    datainicio character varying(40),
+    dataprevista character varying(40),
+    datafim character varying(40),
+    totalpago numeric,
+    status integer,
+    total numeric,
+    estoque numeric,
+    minestoque numeric
+);
+
+
+ALTER TABLE public.orcamento OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 730819)
+-- Name: produto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produto (
+    id integer DEFAULT nextval('public.id_produto_sequence'::regclass) NOT NULL,
+    nome character varying(60),
+    descricao character varying(250),
+    preco numeric,
+    peso numeric,
+    fornecedor character varying,
+    largura numeric,
+    altura numeric,
+    espessura numeric,
+    datacadastro character varying(255),
+    situacao integer,
+    estoqueraz numeric(4,2),
+    qtestoque numeric(4,2)
+);
+
+
+ALTER TABLE public.produto OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 722555)
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuario (
+    id integer DEFAULT nextval('public.id_usuario_sequence'::regclass) NOT NULL,
+    nome character varying(40),
+    senha character varying(40),
+    nivel character varying(20)
+);
+
+
+ALTER TABLE public.usuario OWNER TO postgres;
+
+--
+-- TOC entry 2721 (class 2606 OID 722569)
+-- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2725 (class 2606 OID 747278)
+-- Name: fornecedor fornecedor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.fornecedor
+    ADD CONSTRAINT fornecedor_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2727 (class 2606 OID 755535)
+-- Name: funcionario funcionario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.funcionario
+    ADD CONSTRAINT funcionario_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2731 (class 2606 OID 960726)
+-- Name: itemorcamento itemorcamento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.itemorcamento
+    ADD CONSTRAINT itemorcamento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2729 (class 2606 OID 960710)
+-- Name: orcamento orcamento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orcamento
+    ADD CONSTRAINT orcamento_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2723 (class 2606 OID 730827)
+-- Name: produto produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2719 (class 2606 OID 722560)
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2732 (class 2606 OID 960711)
+-- Name: orcamento idcli; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orcamento
+    ADD CONSTRAINT idcli FOREIGN KEY (idcliente) REFERENCES public.cliente(id);
+
+
+--
+-- TOC entry 2735 (class 2606 OID 960732)
+-- Name: itemorcamento idorc; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.itemorcamento
+    ADD CONSTRAINT idorc FOREIGN KEY (idorcamento) REFERENCES public.orcamento(id);
+
+
+--
+-- TOC entry 2733 (class 2606 OID 960716)
+-- Name: orcamento idresp; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orcamento
+    ADD CONSTRAINT idresp FOREIGN KEY (idresponsavel) REFERENCES public.usuario(id);
+
+
+--
+-- TOC entry 2734 (class 2606 OID 960727)
+-- Name: itemorcamento idrprod; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.itemorcamento
+    ADD CONSTRAINT idrprod FOREIGN KEY (idproduto) REFERENCES public.produto(id);
+
+
+-- Completed on 2019-06-13 18:11:12
+
+--
+-- PostgreSQL database dump complete
+--
+
