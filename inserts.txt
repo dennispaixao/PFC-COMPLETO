@@ -1,3 +1,11 @@
+Create SEQUENCE if not exists id_cliente_sequence;
+Create SEQUENCE if not exists id_fornecedor_sequence;
+Create SEQUENCE if not exists id_funcionario_sequence;
+Create SEQUENCE if not exists id_itemorcamento_sequence;
+Create SEQUENCE if not exists id_orcamento_sequence;
+Create SEQUENCE if not exists id_produto_sequence;
+Create SEQUENCE if not exists id_usuario_sequence;
+
 ALTER SEQUENCE id_cliente_sequence RESTART 1;
 ALTER SEQUENCE id_fornecedor_sequence RESTART 1;
 ALTER SEQUENCE id_funcionario_sequence RESTART 1;
@@ -5,6 +13,55 @@ ALTER SEQUENCE id_itemorcamento_sequence RESTART 1;
 ALTER SEQUENCE id_orcamento_sequence RESTART 1;
 ALTER SEQUENCE id_produto_sequence RESTART 1;
 ALTER SEQUENCE id_usuario_sequence RESTART 1;
+
+delete from usuario;
+delete from cliente;
+delete from funcionario;
+delete from fornecedor;
+delete from produto;
+delete from itemorcamento;
+delete from orcamento;
+
+
+insert into usuario (nome, senha, nivel) values('John','202cb962ac59075b964b07152d234b70','ADMINISTRADOR');
+
+insert into cliente (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Joao', 'Alves', 'm', '1558735214','1','685452148','21535485744', 'joaoalves@teste.com', '1125458777','11958413325');
+insert into cliente (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Ana', 'Golveia', 'f', '1558735214','1','685452148','21535485744', 'anagolveia@teste.com', '1125458777','11958413325');
+insert into cliente (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Marcela', 'Batista', 'f', '1558735214','1','685452148','21535485744', 'marcelabatista@teste.com', '1125458777','11958413325');
+insert into cliente (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Otavio', 'Leao', 'm', '1558735214','1','685452148','21535485744', 'otavioleao@teste.com', '1125458777','11958413325');
+insert into cliente (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Milton', 'Azevedo', 'm', '1558735214','1','685452148','21535485744', 'miltonazevedo@teste.com', '1125458777','11958413325');
+
+
+insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Pedro', 'Batista', 'm', '1558735214','1','685452148','21535485744', 'pedrobatista@teste.com', '1125458777','11958413325');	
+insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Joao', 'Marcelo', 'm', '1558735214','1','685452148','21535485744', 'joaomarcelo@teste.com', '1125458777','11958413325');	
+insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Mario', 'Lucas', 'm', '1558735214','1','685452148','21535485744', 'mariolucas@teste.com', '1125458777','11958413325');	
+insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Sergio', 'Ruan', 'm', '1558735214','1','685452148','21535485744', 'sergioRuan@teste.com', '1125458777','11958413325');	
+insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao,rg, cpf,  email, telefone, celular)values ('Promo', 'Mileno', 'm', '1558735214','1','685452148','21535485744', 'promomileno@teste.com', '1125458777','11958413325');	
+
+
+insert into fornecedor (nome,  datacadastro, situacao,cnpj,  email, telefone, celular)values ('Eucatex',  '1558735214','1','21535485744', 'eucatex@teste.com', '1125458777','11958413725');
+insert into fornecedor (nome,  datacadastro, situacao,cnpj,  email, telefone, celular)values ('Masisa',  '1558735214','1','21535485744', 'masisa@teste.com', '1125458777','11958413825');
+insert into fornecedor (nome,  datacadastro, situacao,cnpj,  email, telefone, celular)values ('Cascola',  '1558735214','1','21535485744', 'cascola@teste.com', '1125458777','11958413125');
+insert into fornecedor (nome,  datacadastro, situacao,cnpj,  email, telefone, celular)values ('Suvinil',  '1558735214','1','21535485744', 'suvinil@teste.com', '1125458777','11958413625');
+insert into fornecedor (nome,  datacadastro, situacao,cnpj,  email, telefone, celular)values ('Sheran Willians',  '1558735214','1','21535485744', 'sheranwillians@teste.com', '1125458777','11958413425');
+
+
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('mesa de centro', 'linda mesa de centro', 500, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('abajur', 'lindo abajur azl', 100, 30,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('luminaria', 'luminaria beior', 100, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('cama casal', 'cama ninana', 500, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('cama solteiro', 'cama ninono', 300, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('armario 2 portas', 'armario elegante', 425.35, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('criado mudo elegante', 'criado', 88.88, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('cristaleira azil', 'cristaleira vilz', 370.40, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('cabideiro', 'cabideiro pendura', 200, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('estrado', 'estrado para cama', 100, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('banqueta nulla', 'banquetair', 80, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('porta joias mandi', 'joinh', 40, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('soleira azetec', 'solo solo', 60, 40,'arte nativa', 100, 40, 40,0);
+insert into produto (nome, descricao, preco, peso, fornecedor, largura, altura, espessura, datacadastro) values('espriguiçadeira maior', 'preguicinha', 90, 40,'arte nativa', 100, 40, 40,0);
+
+
 
 delete from usuario;
 delete from cliente;
