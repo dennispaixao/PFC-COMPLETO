@@ -83,7 +83,7 @@ form input[type="submit"]:hover,form input[type="button"]:hover {
     filter: drop-shadow(0 0 0.15rem crimson);
     font-family: arial;
     font-size: 20px;
-    z-index: 100;
+    z-index: -100;
 }
 
 #voltar{
@@ -123,8 +123,8 @@ form input[type="submit"]:hover,form input[type="button"]:hover {
 
 @keyframes fadeIn{
     0%{opacity:0}
-    90%{opacity:1}  
-    100%{opacity:0}
+    90%{opacity:1; z-index:100}  
+    100%{opacity:0; z-index:-100}
 }
 
 

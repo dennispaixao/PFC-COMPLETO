@@ -5,19 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
-import br.com.artenativa.dao.ClienteDAO;
-import br.com.artenativa.dao.OrcamentoDAO;
-import br.com.artenativa.dao.ProdutoDAO;
-import br.com.artenativa.model.Orcamento;
-import br.com.artenativa.model.Produto;
-import br.com.artenativa.model.mock.OrcamentoMock;
-import br.com.artenativa.util.ParseDates;
-import br.com.artenativa.util.ParseJson;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dennis
  */
-public class BuscarListaEstoqueAjax extends HttpServlet {
+public class BuscarClienteAjax extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,23 +30,14 @@ public class BuscarListaEstoqueAjax extends HttpServlet {
             throws ServletException, IOException {
         
               response.setContentType("text/html;charset=UTF-8");
-              String busca = "";
-              busca = request.getParameter("busca"); 
-              String retorno; 
               
-              try{  
-                  
-                   ProdutoDAO pdao = new ProdutoDAO();
-                   ArrayList<Produto> produtos = pdao.listar(busca);
-                   ParseJson pj = new ParseJson();
-                   retorno = pj.parseJson((ArrayList) produtos);
-                   response.getWriter().write(retorno); 
-                   
-              }catch(IOException | ClassNotFoundException | SQLException e){
-                        response.getWriter().write("Nenhum produto encontrado");
-              }
- 
+              int idCli = Integer.parseInt(request.getParameter("cliente")); 
+            
+              
              
+              response.getWriter().write("RESPOSTA:"+ idCli+""); 
+                   
+     
     }
     
  

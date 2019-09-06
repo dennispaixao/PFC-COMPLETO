@@ -231,7 +231,28 @@ btnGerarOrcamento.addEventListener("click",()=>{
 
 
 
-//document.querySelector("#item-orc").addEventListener("change",calculaTotal());
+
+const cliente = document.querySelector("#cliente");
+
+cliente.addEventListener("change",()=>{
+    console.log(cliente.value);
+     var request = new XMLHttpRequest();
+     
+     request.onload = function() {
+       
+         if (request.status === 200){  
+            alert(request.responseText);
+       
+       }else{
+            alert("erro ao cadastrar");
+       } 
+         
+   };
+   
+   request.open('POST', 'BuscarClienteAjax?cliente='+cliente.value);
+  
+   request.send();
+});
 
 
   

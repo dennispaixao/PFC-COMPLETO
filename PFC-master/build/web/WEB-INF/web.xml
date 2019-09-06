@@ -159,6 +159,16 @@
         <servlet-name>FinalizarOrcamentoAjax</servlet-name>
         <url-pattern>/FinalizarOrcamentoAjax</url-pattern>
     </servlet-mapping> 
+    
+    <servlet>
+        <servlet-name>BuscarClienteAjax</servlet-name>
+        <servlet-class>br.com.artenativa.ajax.BuscarClienteAjax</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>BuscarClienteAjax</servlet-name>
+        <url-pattern>/BuscarClienteAjax</url-pattern>
+    </servlet-mapping> 
        
                  
         <session-config>

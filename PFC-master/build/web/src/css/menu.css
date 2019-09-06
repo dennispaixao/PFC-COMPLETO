@@ -2,7 +2,8 @@
 *{
     margin:0;
     padding:0;
-}#menu-principal{
+}
+#menu-principal{
     width:100%;
     height:20px;
     font-family: Verdana;
@@ -14,18 +15,22 @@
     text-align: center;
     position: inherit;
     z-index: 10;
-}#menu-principal ul a{
+}
+#menu-principal ul a{
     text-decoration: none;
     color: #333;
-}#menu-principal ul a:visited{
+}
+#menu-principal ul a:visited{
     color: #fff;
-}#menu-principal ul{
+}
+#menu-principal ul{
     width:900px;
     text-align: center;
     max-width: 100%;
     float:right;
     position:absolute;
-}#menu-principal ul li{
+}
+#menu-principal ul li{
     width:auto;
     margin-right: 50px;
     display:inline-block;
@@ -33,7 +38,8 @@
     color:white;
     background:gray;
     transition:0.3s;
-}#menu-principal ul li:last-child{
+}
+#menu-principal ul li:last-child{
     text-align: center;
 
 }
@@ -48,14 +54,18 @@
     background-color:#934b00;
     transition:0.2s;
     text-align: left !important;
-}#menu-principal ul li:hover{
+}
+#menu-principal ul li:hover{
     color:#fff;
-}#menu-principal ul li:hover ul li{
+}
+#menu-principal ul li:hover ul li{
     display:block; 
-}#menu-principal ul li ul li:hover{
+}
+#menu-principal ul li ul li:hover{
     color:#fff;
     border-left:6px solid white;  
-}#menu-principal ul li input{
+}
+#menu-principal ul li input{
     width:100px;
     height: 30px;
     border-radius:30px;
@@ -65,13 +75,16 @@
     color:white;
     border:none;
     transition: 0.3s;
-}#menu-principal ul li input:hover{
+}
+#menu-principal ul li input:hover{
     background:orange;
     transform: scale(1.05);
-}#menu-principal ul li input:active{
+}
+#menu-principal ul li input:active{
     background: #ccc;
     transform: scale(0.95);
-}#menu-principal div{
+}
+#menu-principal div{
     width:900px;
     height:100px;
     margin:0 auto;
@@ -100,27 +113,33 @@
         right:0px;
         top:5px;
         color:white;   
-    }#menu-principal ul li{
+    }
+    #menu-principal ul li{
         text-align: right;
         margin-top:10px;
         border-radius: 3px;
         transition:1s;
-    }#menu-principal ul li:last-child{
+    }
+    #menu-principal ul li:last-child{
         float:right;
-    }#menu-principal ul li input{
+    }
+    #menu-principal ul li input{
+     
         border-radius: 3px;
         transform:scale(0.8);
         z-index: -1;
-    }#menu-principal ul li ul{
+    }
+    #menu-principal ul li ul{
         text-align: left;
         transition:1s;   
-    }#menu-principal ul li:hover ul {
+    }
+    #menu-principal ul li:hover ul {
         z-index: 100;
         height:100%;   
-    }#logo-menu{
+    }
+    #logo-menu{
         width:40px;
         height:40px;
-
         background-image: url('logoMenu.png');
         background-size: 80%;
         background-repeat: no-repeat;
