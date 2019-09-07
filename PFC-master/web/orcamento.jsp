@@ -24,8 +24,8 @@
             <div id="box-form" >
                 <h1> Orçamento </h1> 
                 <form action="ControllerFactory" method="post">
-
-                    Id Cliente : <input type="text" id="cliente"><br>
+                    <h3 id="nomeCli"></h3> <br>
+                    Id do cliente : <input type="text" id="cliente"><br>
                     Data início : <input type="date" id="datainicio"><br>
                     Data prevista : <input type="date" id="dataprevista"><br>
                     Descrição<textarea id="descricao"> </textarea><br>

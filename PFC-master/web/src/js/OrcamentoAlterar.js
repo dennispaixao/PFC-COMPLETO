@@ -202,9 +202,7 @@ btnAlterarOrcamento.addEventListener("click",()=>{
        
          if (request.status === 200){  
            alert(request.responseText);
-           
-           document.location = "http://localhost:8080/CommandFactoryCRUD/ControllerFactory?acao=GerenciarPagamento&id=" + recId();
-
+           window.location.href = "ControllerFactory?acao=GerenciarPagamento&id=" + recId();
        }else{
             alert("erro ao cadastrar");
        } 

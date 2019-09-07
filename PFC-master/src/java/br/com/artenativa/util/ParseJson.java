@@ -53,6 +53,10 @@ public class ParseJson implements ParseJsonInterface {
         }  
         return retorno += "]";  
     }
+
+    public String parseJson() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
   
     

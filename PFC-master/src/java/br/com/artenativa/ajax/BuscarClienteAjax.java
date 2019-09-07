@@ -5,7 +5,11 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.dao.ClienteDAO;
+import br.com.artenativa.model.Cliente;
+import br.com.artenativa.util.ParseJson;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +36,20 @@ public class BuscarClienteAjax extends HttpServlet {
               response.setContentType("text/html;charset=UTF-8");
               
               int idCli = Integer.parseInt(request.getParameter("cliente")); 
-            
+              Cliente cli = new Cliente(idCli);
+              String retorno = "não|encontrado";
+              try{
+                   cli = new ClienteDAO().buscar(cli);
+                   if(cli.getNome()!= null){
+                   retorno = cli.getNome()+"|"+cli.getSobrenome();
+                   }
+              }catch(ClassNotFoundException | SQLException e){
               
+              
+              }
              
-              response.getWriter().write("RESPOSTA:"+ idCli+""); 
+              response.getWriter().write(retorno); 
                    
-     
     }
     
  

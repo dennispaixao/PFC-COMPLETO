@@ -49,7 +49,7 @@ public class BuscarListaOrcamentosAjax extends HttpServlet {
                    orcamentos.forEach((_o)->{
                        try {
                            OrcamentoMock omock = new OrcamentoMock(_o.getId());
-                           omock.setNomeCliente(new ClienteDAO().buscar(_o.getCliente()).getNome());
+                           omock.setNomeCliente(new ClienteDAO().buscar(_o.getCliente()).getNome() +" "+ new ClienteDAO().buscar(_o.getCliente()).getSobrenome());
                            omock.setDataInsercao(ParseDates.formatUnixToDisplay(_o.getDataInsercao()));
                            omock.setEstado(_o.getEstado());
                            omocks.add(omock);     

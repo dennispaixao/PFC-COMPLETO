@@ -26,7 +26,7 @@
             <div id="box-form" >
                 <h1> Orçamento</h1>
                 <h4>Orçamento: <%=o.getId()%></h4>
-                <h4>Cliente: <%= o.getCliente().getNome()%></h4>
+                <h4>Cliente: <%= o.getCliente().getNome()%> <%= o.getCliente().getSobrenome()%></h4>
                 <form action="ControllerFactory" method="post">
 
                     Id Cliente : <input type="text" id="cliente" value="<%= o.getCliente().getId() %>"><br>

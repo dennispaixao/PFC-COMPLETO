@@ -208,6 +208,7 @@ btnGerarOrcamento.addEventListener("click",()=>{
        
          if (request.status === 200){  
             alert(request.responseText);
+            window.location.href = "orcamentoListar.jsp";
        
        }else{
             alert("erro ao cadastrar");
@@ -241,10 +242,14 @@ cliente.addEventListener("change",()=>{
      request.onload = function() {
        
          if (request.status === 200){  
-            alert(request.responseText);
-       
+           let cli =  request.responseText.split("|");
+           let nome = cli[0];
+           let sobrenome = cli[1];
+           let campoNome = document.querySelector("#nomeCli");
+           campoNome.textContent = `Cliente: ${nome} ${sobrenome}`; 
+
        }else{
-            alert("erro ao cadastrar");
+            alert("Id cliente deve ser numero");
        } 
          
    };
