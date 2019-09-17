@@ -19,19 +19,59 @@
 
     <body>
         <%@include file="/menu.jsp" %>    
-        <div id="container">
+     
 
-            <div id="box-form" >
-                <h1> Orçamento </h1> 
-                <form action="ControllerFactory" method="post">
-                    <h3 id="nomeCli"></h3> <br>
-                    Id do cliente : <input type="text" id="cliente"><br>
-                    Data início : <input type="date" id="datainicio"><br>
-                    Data prevista : <input type="date" id="dataprevista"><br>
-                    Descrição<textarea id="descricao"> </textarea><br>
+           
+
+         <div class="container" >
+  
+            <form action="ControllerFactory" method="post">
+                <div class="row row-content">
+                    <div class="col-12">
+                        <h1> Orcamento </h1>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                              <h3 id="nomeCli"></h3> <br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cliente" class="col-md-2 col-form-label">id do cliente:</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="cliente"  
+                                       placeholder="id">
+                            </div>
+                        </div>
+                        
+                          <div class="form-group row">
+                            <label for="datainicio" class="col-md-2 col-form-label">data do início:</label>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control"  id="datainicio">
+                                   
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="dataprevista" class="col-md-2 col-form-label">data prevista:</label>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control"  id="dataprevista"
+                                       placeholder="id">
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for=descricao class="col-md-2 col-form-label">Descricao</label>
+                            <div class="col-md-8">
+                                <textarea style="height: 200px" class="form-control" id="descricao" rows="12"></textarea>
+                            </div>
+                        
+  
+                    </div>
+                </div>
                     
-                    
-                    <div style="float:left; text-align: left;"> 
+                 <div class="col-12 col-md-6">    
+                    <div style="float:left; text-align: left;margin-bottom:30px;"> 
                         Inserir Item:<br> <input type="text" id="q"><br>
                         <div id="itens">
                             <table id="table"  border="1" >  
@@ -41,8 +81,8 @@
                         </div> 
                     </div>
 
-                    <br> &nbsp; <br>  <br>  
-                    <div id="tabela-orcamento" style="margin-top:20px;">
+                    
+                     <div id="tabela-orcamento" style="margin-top:20px; height: 300px; overflow: scroll; background: #fff">
                         <table id="table"  border="1"  >  
                             <thead>
                             <th>id</th>
@@ -53,23 +93,28 @@
                             <th>opções</th>
                             </thead>     
                             <tbody id="itens-orcamento">
-                            <input id="btn-gerar-orcamento" style="background: #FF3; padding: 5px" type="button" name="acao" value="gerar orcamento">
+                            <input id="btn-gerar-orcamento" class="btn btn-success" type="button" name="acao" value="gerar orcamento">
                             </tbody>
                         </table>
                         <br>
                         Total  R$<input id="total-orcamento" readonly>
                     </div>  
-                </form>
+                 </div> 
+        
+            </form>
+                
 
-                <div id="mensagem">
-                    <% if (request.getAttribute("msg")!= null) {%>
-                    <h2><%=request.getAttribute("msg") %> </h2>
-                    <% }%>
-                </div>
 
+            
+            
+            <div id="mensagem">
+                <% if (request.getAttribute("msg") != null) {%>
+                <h2><%=request.getAttribute("msg")%> </h2>
+                <% }%>
             </div>
-
-        </div>      
+        
+          </div>  
+         </div>
 
         <script src="src/js/GerarOrcamento.js"></script>  
 

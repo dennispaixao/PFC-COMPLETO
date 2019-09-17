@@ -31,8 +31,7 @@
                    
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
+                        <th>Nome</th>  
                         <th>Cadastro</th>
                         <th>Ferramentas</th>
 
@@ -68,8 +67,8 @@
                 <tr>
                   
                     <th><%= p.getId() %></th>
-                    <td><%= p.getNome()	%> </td>
-                    <td><%= p.getSobrenome()%> </td>
+                    <td><%= p.getNome()	%>   <%= p.getSobrenome()%> </td>
+                  
                     <td><%= dtCad %> </td>
                
                 <td><a href="ControllerFactory?acao=ExcluirCliente&id=<%= p.getId() %>">

@@ -79,15 +79,15 @@ const listar = ()=>{
                 
                 buttonAdd.addEventListener("click",(e)=>{
                 //verifica se quantidade digitada é um numero   
-                if(!isNaN(campoQt.value)){  
-                      if(campoQt.value < 1){
+                if(!isNaN(parseFloat(campoQt.value))){  
+                      if(campoQt.value < 0.0000001){
                           alert("Quantidade precisa ser um numero positivo");
                       }else{
                           addPedido(produtos[i].id,produtos[i].nome, produtos[i].preco, campoQt.value);   
                       }
             }else{alert("Quantidade precisa ser um numero positivo");}
                 });
-                   console.log(produtos);            
+                             
          }
         }
         else {

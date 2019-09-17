@@ -14,7 +14,6 @@ body{
     max-width: 100%;
     height:100%;
     text-align: center;
-    background:#fffffc;
     color:#333;
     font-family: arial;
 
@@ -104,10 +103,16 @@ form input[type="submit"]:hover,form input[type="button"]:hover {
     color:#666;
     border-radius: 0px 0px 20px 0px;
     background-color: #ccc;
-    font-size: 15px;
+    font-size: 10px;
     text-align: left;
     bottom:20px;
     left:20px;
+}
+
+.container{
+    background: #748d78;
+    margin-top: 100px;
+ 
 }
 
 #camposOrcamento{color:black; }

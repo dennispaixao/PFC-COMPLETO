@@ -18,7 +18,7 @@
     <body>
       
         <%@include file="/menu.jsp" %>    
-        <div id="container">
+        <div class="container">
 
          
 
@@ -33,40 +33,43 @@
 
 
             </style>
-             <h1 id="listarh1">Estoque</h1> 
-                    <nav id="menu-estoque">   
-                            <ul>        
-                                <a href="orcamentoListar.jsp?status=1"><li id="iniciados"> Todos</li></a>
-                                <a href="orcamentoListar.jsp?status=2"><li id="producao"> Razoável</li></a>
-                                <a href="orcamentoListar.jsp?status=3"><li id="entrega"> Abaixo</li> </a>
-                            </ul>    
-                        </nav>
-            <div id="box-form" >
-                  
-                <form>
-                       
-                        Pequisar por nome: <input type="text" id="q"><br>
-                        
-               </form>   
-                         </div> 
-                        <table border="l">    
+          <div class="row">
+              <div class="col">
+                <h1 id="listarh1">Estoque</h1> 
+                       <nav id="menu-estoque">   
+                               <ul>        
+                                   <a href="orcamentoListar.jsp?status=1"><li id="iniciados"> Todos</li></a>
+                                   <a href="orcamentoListar.jsp?status=2"><li id="producao"> Razoável</li></a>
+                                   <a href="orcamentoListar.jsp?status=3"><li id="entrega"> Abaixo</li> </a>
+                               </ul>    
+                           </nav>
+               <div id="box-form" >
 
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Produto</th>
-                                  
-                                    <th>Quantidade</th>
-                                    <th>Padrao</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbodyOrcamentos">
-                            </tbody>
-                        </table>
-        
-      
-            
-        </div>  
+                   <form>
+
+                           Pequisar por nome: <input type="text" id="q"><br>
+
+                  </form>   
+                            </div> 
+                           <table border="l">    
+
+                               <thead>
+                                   <tr>
+                                       <th>ID</th>
+                                       <th>Produto</th>
+
+                                       <th>Quantidade</th>
+                                       <th>Padrao</th>
+                                   </tr>
+                               </thead>
+                               <tbody id="tbodyOrcamentos">
+                               </tbody>
+                           </table>
+
+                </div>
+
+           </div>  
+       <div id="row">
 
         <script src="src/js/ListarEstoque.js"></script>    
 
