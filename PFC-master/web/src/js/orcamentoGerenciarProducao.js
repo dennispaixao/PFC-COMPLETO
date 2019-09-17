@@ -59,7 +59,8 @@ btn_entrega.addEventListener("click",()=>{
       xhr.open('POST', 'LiberarEntregaOrcamentoAjax?idOrc='+idOrc);
       xhr.onload = function () {
             if (xhr.status === 200){
-                alert(xhr.responseText);
+                
+                 window.location.href = "orcamentoListar.jsp";
               
             } else {
                 alert("erro:" + xhr.status);

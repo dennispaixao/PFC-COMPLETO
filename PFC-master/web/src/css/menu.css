@@ -107,34 +107,38 @@
 }
 @media only screen and (max-width:600px){  
     #menu-principal ul{ 
-        width:150px;
+        width:100%;
+
         position: absolute;
         background:#888;
         right:0px;
         top:5px;
         color:white;   
+        z-index: 1000;
     }
     #menu-principal ul li{
         text-align: right;
         margin-top:10px;
         border-radius: 3px;
         transition:1s;
+         z-index: 100;
     }
     #menu-principal ul li:last-child{
         float:right;
     }
     #menu-principal ul li input{
-     
+        width:100%;
         border-radius: 3px;
         transform:scale(0.8);
         z-index: -1;
     }
     #menu-principal ul li ul{
+        width:100%;
         text-align: left;
         transition:1s;   
     }
-    #menu-principal ul li:hover ul {
-        z-index: 100;
+    #menu-principal ul li:active ul {
+       
         height:100%;   
     }
     #logo-menu{
@@ -148,3 +152,4 @@
         transition:2s;
         top:-10px;
     }
+}

@@ -55,7 +55,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Produto</th>
-                                    <th>Fornecedor</th>
+                                  
                                     <th>Quantidade</th>
                                     <th>Padrao</th>
                                 </tr>

@@ -8,8 +8,8 @@ btnProduzir.addEventListener("click", ()=>{
     xhr.open('POST', 'AprovarOrcamentoAjax?id='+idOrc);
     xhr.onload = function() {
         if (xhr.status === 200) {
-        alert(xhr.responseText);
-
+        alert("o orçamento foi aprovado");
+        window.location.href = "orcamentoListar.jsp";
         } 
         
         else {

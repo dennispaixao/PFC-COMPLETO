@@ -24,9 +24,12 @@ const listar = (busca) => {
                 let tr = document.createElement("tr");
                 
                 if(produtos[i].qtEstoque < 0){
-                  tr.style.background = "#ff6666";    
-                }else if(produtos[i].qtEstoque >= produtos[i].estoqueRaz){
+                  tr.style.background = "#ff6666";   
+
+                }else if(parseFloat(produtos[i].qtEstoque) >= parseFloat(produtos[i].estoqueRaz)){
+                   
                     tr.style.background = "lightgreen";   
+       
                     
                 } 
                 
@@ -43,9 +46,9 @@ const listar = (busca) => {
                 tdProduto.textContent = produtos[i].nome;
                 tr.appendChild(tdProduto);
 
-                let tdFornecedor = document.createElement("td");
-                tdFornecedor.textContent = produtos[i].fornecedor;
-                tr.appendChild(tdFornecedor);
+                //let tdFornecedor = document.createElement("td");
+                //tdFornecedor.textContent = produtos[i].fornecedor;
+                //tr.appendChild(tdFornecedor);
 
                 let tdQuantidade = document.createElement("td");
                 tdQuantidade.style.textAlign = "center";
