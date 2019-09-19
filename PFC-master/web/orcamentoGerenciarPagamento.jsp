@@ -20,32 +20,104 @@
             double total = orc.getValor();
             String totalFormatado = String.format("%.2f", total);
             double p = orc.getTotalPago();
-            String pago = String.format("%.2f", p);  %>
+            String pago = String.format("%.2f", p);%>
 
-        <div id="box-form">
-            
-            <div style="float:left; width:400px; text-align: left;">
-                <h1> Orcamento:<%= orc.getId()%> </h1>
-                <h4> Cliente:<%= orc.getCliente().getNome()%> </h4>
-                <h4> Responsavel:<%= orc.getResponsavel().getNome()%> </h4>
-                <h4> DataCadastro:<%= ParseDates.formatUnixToDisplay(orc.getDataInicio())%> </h4>
-            </div> 
-            
-            <form action="ControllerFactory" method="POST">
-                <br>
-                <input type="button" id="produzir" value="Aprovar Orcamento">
-                <input type="hidden" id="idOrc" value="<%= orc.getId()%>" readonly ><br>
-                <input type="text" id="total" value="Total R$:<%=totalFormatado%>" readonly ><br>
-                <input type="text" id="qtpaga" value="Pago R$:<%=pago%>" readonly><br><br>
-                R$<input type="text" id="campoPagar"  style="width:100px; margin-right: 20px;">
-                <input type="button" id="pagar" style="background:lightgreen" value="Inserir Pagamento"><br><br>
-                Troco: <input  type="text" id="troco" style="width:110px" >
-                
-            </form>
-                
-        </div>
+        <div class="container">
+            <div class="row" >
+                <div class="col-12 col-md-6">
+                    
+                    <div style="float:left; width:400px; text-align: left;">
+                        <a href="orcamentoListar.jsp" style="margin-right: 20px; font-size:18px; font-weight: bold; color:yellowgreen"  > voltar </a>
+                        <h1> Orcamento:<%= orc.getId()%> </h1>
+                        <h4> Cliente:<%= orc.getCliente().getNome()%> </h4>
+                        <h4> Responsavel:<%= orc.getResponsavel().getNome()%> </h4>
+                        <h4> DataCadastro:<%= ParseDates.formatUnixToDisplayNoHour(orc.getDataInicio())%> </h4>
+                    </div> 
+                </div>
+                <div class="col-12 col-md-6">
+                    
+                    <form action="ControllerFactory" method="POST">
 
-       <script src="src/js/GerenciarPagamentoOrcamento.js">  </script> 
-       <script src="src/js/AprovarOrcamento.js">  </script> 
+                        <div class="card" style="margin:10px">
+                            <div class="card-header text-dark" >
+                                <input type="hidden" id="idOrc" value="<%= orc.getId()%>" readonly ><br>
+                                <h2>Pagamento</h2>
+                            </div>
+                            <div class="card-body text-dark">
+                                <div class="row">
+                                        <div class="col-xl-5">
+                                            <div class="form-group row">
+                                                <label for="nome" class="col-md-4 col-form-label">Total:</label>
+                                                <div class="col-xl-7">
+                                                    <input type="text" id="total" value="<%=totalFormatado%>" readonly  class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="nome" class="col-md-4 col-form-label">Pago:</label>
+                                                <div class="col-xl-7">
+                                                    <input type="text" id="qtpaga" value="<%=pago%>" readonly  class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                 
+                                    <div class="col-xl-7">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="form-group row">
+                                                    <div class="col-xl-12">
+                                                        <input type="text" id="campoPagar" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-7">
+
+                                                <div class="form-group row">
+                                                    <div class="col-xl-12">
+                                                        <input type="button" id="pagar" value="Inserir Pagamento" class="form-control text-white bg-success">
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                            </div>    
+                                        
+                                        </div>    
+                                        <div class="row">
+                                            <div class="col-8 offset-4">
+                                                     
+                                                    
+                                                    <div class="form-group row">
+                                                    <label for="nome" class="col-xl-5 col-form-label">Troco:</label>
+                                                    <div class="col-xl-7">
+                                                        <input type="text" id="troco" class="form-control" readonly >
+                                                    </div>
+                                                </div>
+                                                    
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                     
+                                       
+                                      
+                                        
+                                    </div>      
+                                </div>    
+
+                               
+                            </div>                      
+                        </div>
+
+                        
+
+
+                        </div>  
+                    </form>
+                </div>
+            </div>
+
+
+            <script src="src/js/GerenciarPagamentoOrcamento.js"></script> 
+            <script src="src/js/AprovarOrcamento.js"></script> 
     </body>
 </html>

@@ -29,9 +29,7 @@ const listar = () => {
                 tdDataInsercao.textContent = orcamentos[i].dataInsercao;
                 tr.appendChild(tdDataInsercao);
 
-                let tdSituacao = document.createElement("td");
-                tdSituacao.textContent = orcamentos[i].estado;
-                tr.appendChild(tdSituacao); 
+              
                 
                 let tdFerramentas = document.createElement("td");
 
@@ -39,19 +37,32 @@ const listar = () => {
                 imgExcluir.setAttribute("src", "img/excluir.png");
                 imgExcluir.setAttribute("alt", "excluir");
                 imgExcluir.setAttribute("title", "excluir");
-                imgExcluir.setAttribute("class", "btn");
                 imgExcluir.setAttribute("id", "btn-exc-" + orcamentos[i].id);
 
                 tdFerramentas.appendChild(imgExcluir);
+                
+                let aPagar = document.createElement("a");
+                aPagar.setAttribute("href","ControllerFactory?acao=GerenciarPagamento&id="+orcamentos[i].id);
+                let imgPagar = document.createElement("img"); 
+                imgPagar.setAttribute("id", "btn-ap-" + orcamentos[i].id);
+                imgPagar.setAttribute("src", "img/coin.png");
+                imgPagar.setAttribute("class", "btn-ap" + orcamentos[i].id);
+                imgPagar.setAttribute("alt", "Inserir Pagamento");
+                imgPagar.setAttribute("title", "Inserir Pagamento");   
+                aPagar.appendChild(imgPagar); 
+                tdFerramentas.appendChild(aPagar);
+                
                 
                 let a = document.createElement("a");
                 a.setAttribute("href","ControllerFactory?acao=GerenciarOrcamentoProducao&id="+orcamentos[i].id);
                 
                 let imgVer = document.createElement("img");
-                imgVer.setAttribute("src", "img/editar.png");
-                imgVer.setAttribute("alt", "ver orcamento");
-                imgVer.setAttribute("title", "ver orcamento");   
+                imgVer.setAttribute("src", "img/tool.png");
+                imgVer.setAttribute("alt", "gerenciar produção");
+                imgVer.setAttribute("title", "gerenciar produção");   
                 a.appendChild(imgVer);
+                
+                
                 
                 tdFerramentas.appendChild(a);
 

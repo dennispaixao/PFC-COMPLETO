@@ -21,34 +21,78 @@
       <%  
           Orcamento o = (Orcamento) request.getAttribute("orcamento");
       %>
-        
-        <div id="container">
-            <div id="box-form" >
-                <h1> Orçamento</h1>
-                <h4>Orçamento: <%=o.getId()%></h4>
-                <h4>Cliente: <%= o.getCliente().getNome()%> <%= o.getCliente().getSobrenome()%></h4>
-                <form action="ControllerFactory" method="post">
-
-                    Id Cliente : <input type="text" id="cliente" value="<%= o.getCliente().getId() %>"><br>
-                    Data início : <input type="date" id="datainicio" value="<%= ParseDates.formatUnixToBrowser(o.getDataInicio())%>"><br>
-                    Data prevista : <input type="date" id="dataprevista" value="<%= ParseDates.formatUnixToBrowser(o.getDataPrevista())%>"><br>
-                    Descrição : <textarea id="descricao"><%= o.getRelatorio() %></textarea><br>
-
-
-                    <div style="float:left; text-align: left;"> 
-                        Inserir Item:<br> <input type="text" id="q"><br>
-                        <div id="itens">
-                            <table id="table"  border="1" >  
-                                <tbody id="tbody">
-                                </tbody>
-                            </table>
-                        </div> 
+      
+                 <div class="container" >
+  
+            <form action="ControllerFactory" method="post">
+                <div class="row row-content">
+                    <div class="col-12">
+                      <a href="orcamentoListar.jsp" style="margin-right: 20px; font-size:18px; font-weight: bold; color:yellowgreen"  > voltar </a>
+                        <h1> Orcamento </h1>
+                        <h4>Orçamento: <%=o.getId()%></h4>
+                    <h4>Cliente: <%= o.getCliente().getNome()%> <%= o.getCliente().getSobrenome()%></h4>
                     </div>
-
-                    <br> &nbsp; <br>  <br>  
-                    <div id="tabela-orcamento" style="margin-top:20px;">
-
-                        <table id="table"  border="1"  >  
+                    <div class="col-12 col-md-5">
+                        
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                              <h3 id="nomeCli"></h3> <br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cliente" class="col-md-4 col-form-label">id do cliente:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" value="<%= o.getCliente().getId() %>" id="cliente"  
+                                       placeholder="id">
+                            </div>
+                        </div>
+                        
+                          <div class="form-group row">
+                            <label for="datainicio" class="col-md-4 col-form-label">data do início:</label>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" value="<%= ParseDates.formatUnixToBrowser(o.getDataInicio())%>" id="datainicio">
+                                   
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="dataprevista" class="col-md-4 col-form-label">data prevista:</label>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control"  id="dataprevista" value="<%= ParseDates.formatUnixToBrowser(o.getDataPrevista())%>"
+                                       placeholder="id">
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for=descricao class="col-md-4 col-form-label">Descricao</label>
+                            <div class="col-md-8">
+                                <textarea style="height: 200px" class="form-control" id="descricao" rows="12"> <%= o.getRelatorio() %></textarea>
+                            </div>
+                        
+  
+                    </div>
+                </div>
+                    
+                 <div class="col-12 col-md-7">    
+                   
+                   
+                    <div class="form-group row">
+                         <label for="dataprevista" class="col-md-3 col-form-label">Inserir Item:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control"  id="q" >
+                                <div id="itens">
+                                    <table id="table" class="table table-dark" border="1" >  
+                                        <tbody id="tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                           
+                    </div>     
+                     
+                    
+                     <div id="tabela-orcamento" style="margin-top:20px; height: 350px; overflow: scroll; background: #333; color:white">
+                        <table id="table" class="table table-dark" border="1"  >  
                             <thead>
                             <th>id</th>
                             <th>nome</th>
@@ -65,9 +109,24 @@
                         <br>
                         Total  R$<input id="total-orcamento" readonly>
                     </div>  
-                </form>
+                 </div> 
+        
+            </form>
+                
+
+
+            
+            
+            <div id="mensagem">
+                <% if (request.getAttribute("msg") != null) {%>
+                <h2><%=request.getAttribute("msg")%> </h2>
+                <% }%>
             </div>
-        </div>      
+        
+          </div>  
+         </div>   
+                    
+              
 
         <script src="src/js/OrcamentoAlterar.js"></script>     
     </body>

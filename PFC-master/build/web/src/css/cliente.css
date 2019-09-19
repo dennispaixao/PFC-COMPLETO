@@ -110,7 +110,8 @@ form input[type="submit"]:hover,form input[type="button"]:hover {
 }
 
 .container{
-    background: #748d78;
+    background: #244068;
+    color:white;
     margin-top: 100px;
  
 }

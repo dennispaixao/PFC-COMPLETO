@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>JSP Page</title>
         
         <link href="src/css/tabela.css" rel="stylesheet" type="text/css"/>
@@ -35,23 +36,36 @@
             </style>
           <div class="row">
               <div class="col">
-                <h1 id="listarh1">Estoque</h1> 
-                       <nav id="menu-estoque">   
-                               <ul>        
-                                   <a href="orcamentoListar.jsp?status=1"><li id="iniciados"> Todos</li></a>
-                                   <a href="orcamentoListar.jsp?status=2"><li id="producao"> Razoável</li></a>
-                                   <a href="orcamentoListar.jsp?status=3"><li id="entrega"> Abaixo</li> </a>
-                               </ul>    
-                           </nav>
-               <div id="box-form" >
-
+          
+                      <div class="col-12 ">    
+                   
+                   
+                    <div class="form-group row">
+                         <h1  class="col-12">Estoque</h1>
+                           
+                        
+                           
+                    </div>  
+           
                    <form>
+                       <div class="col-12 col-md-12">    
+                   
+                   
+                    <div class="form-group row">
+                         <label for="dataprevista" class="col-md-2 col-form-label" >Pequisar por nome:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control"  id="q" >
+                              
+                            </div>
+                        
+                           
+                    </div>    
 
-                           Pequisar por nome: <input type="text" id="q"><br>
+                          
 
                   </form>   
                             </div> 
-                           <table border="l">    
+                           <table class="table table-dark" border="l">    
 
                                <thead>
                                    <tr>
@@ -66,10 +80,10 @@
                                </tbody>
                            </table>
 
-                </div>
+              
 
            </div>  
-       <div id="row">
+      
 
         <script src="src/js/ListarEstoque.js"></script>    
 

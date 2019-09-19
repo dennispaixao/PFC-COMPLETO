@@ -143,7 +143,7 @@
                         
                         <div class="form-group row">
                             <label for="UF" class="col-md-2 col-form-label">UF:</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <input type="text" class="form-control" id="uf" name=UF"
                                        placeholder="UF">
                             </div>
@@ -151,7 +151,7 @@
                         
                          <div class="form-group row">
                             <label for="numero" class="col-md-2 col-form-label">Numero:</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input type="text" class="form-control" name=numero"
                                        placeholder="ex:88)">
                             </div>
@@ -170,7 +170,7 @@
                             <div class="offset-md-2 col-md-10" style="text-align: right">
 
                                 <input type="submit" class="btn " style="background:#00b5bd" name="acao" value="Cadastrar Cliente">
-                                <input type="submit" class="btn "  style="background:#e3ed02" name="acao" value="Listar Cliente">
+                               
                             </div>
                         </div>
 

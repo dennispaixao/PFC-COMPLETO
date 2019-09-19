@@ -29,9 +29,6 @@ const listar = () => {
                 tdDataInsercao.textContent = orcamentos[i].dataInsercao;
                 tr.appendChild(tdDataInsercao);
 
-                let tdSituacao = document.createElement("td");
-                tdSituacao.textContent = orcamentos[i].estado;
-                tr.appendChild(tdSituacao); 
                 
                 let tdFerramentas = document.createElement("td");
  
@@ -39,12 +36,27 @@ const listar = () => {
                 a.setAttribute("href","ControllerFactory?acao=GerenciarOrcamentoEntrega&id="+orcamentos[i].id);
                 
                 let imgVer = document.createElement("img");
-                imgVer.setAttribute("src", "img/editar.png");
-                imgVer.setAttribute("alt", "ver orcamento");
-                imgVer.setAttribute("title", "ver orcamento");   
+                imgVer.setAttribute("src", "img/box.png");
+                imgVer.setAttribute("alt", "Gerenciar Entrega");
+                imgVer.setAttribute("title", "Gerenciar Entrega");   
                 a.appendChild(imgVer);       
                 tdFerramentas.appendChild(a);
                 tr.appendChild(tdFerramentas);
+                
+                let aPagar = document.createElement("a");
+                aPagar.setAttribute("href","ControllerFactory?acao=GerenciarPagamento&id="+orcamentos[i].id);
+                let imgPagar = document.createElement("img"); 
+                imgPagar.setAttribute("id", "btn-ap-" + orcamentos[i].id);
+                imgPagar.setAttribute("src", "img/coin.png");
+                imgPagar.setAttribute("class", "btn-ap" + orcamentos[i].id);
+                imgPagar.setAttribute("alt", "Inserir Pagamento");
+                imgPagar.setAttribute("title", "Inserir Pagamento");   
+                aPagar.appendChild(imgPagar); 
+                tdFerramentas.appendChild(aPagar);
+                
+                
+                
+                
                 tbody.appendChild(tr);
  
             }

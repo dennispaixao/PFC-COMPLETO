@@ -50,6 +50,19 @@ public class ParseDates {
         return dtCad;
     }
     
+      public static String formatUnixToDisplayNoHour(String unix){
+        Long unixSeconds = 0L;
+        try{
+            unixSeconds =Long.parseLong(unix);
+        }catch(NumberFormatException e){}
+        
+        Date date = new java.util.Date(unixSeconds*1000L); 
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
+        sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT-3"));
+        String dtCad = sdf.format(date);
+        return dtCad;
+    }
+    
 
    //formata a data de unix para formato aceito pelo input date dos navegadores
     public static String formatUnixToBrowser(String unix){

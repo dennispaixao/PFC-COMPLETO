@@ -29,17 +29,14 @@ const listar = () => {
                 tdDataInsercao.textContent = orcamentos[i].dataInsercao;
                 tr.appendChild(tdDataInsercao);
 
-                let tdSituacao = document.createElement("td");
-                tdSituacao.textContent = orcamentos[i].estado;
-                tr.appendChild(tdSituacao); 
+                 
                 
                 let tdFerramentas = document.createElement("td");
 
                 let imgExcluir = document.createElement("img");
                 imgExcluir.setAttribute("src", "img/excluir.png");
-                imgExcluir.setAttribute("alt", "excluir");
-                imgExcluir.setAttribute("title", "excluir");
-                imgExcluir.setAttribute("class", "btn");
+                imgExcluir.setAttribute("alt", "excluir orçamento");
+                imgExcluir.setAttribute("title", "excluir orçamento");
                 imgExcluir.setAttribute("id", "btn-exc-" + orcamentos[i].id);
 
                 tdFerramentas.appendChild(imgExcluir);
@@ -48,7 +45,7 @@ const listar = () => {
                 a.setAttribute("href","ControllerFactory?acao=VizualizarOrcamentoFinalizado&id="+orcamentos[i].id);
                 
                 let imgVer = document.createElement("img");
-                imgVer.setAttribute("src", "img/editar.png");
+                imgVer.setAttribute("src", "img/lupa.png");
                 imgVer.setAttribute("alt", "ver orcamento");
                 imgVer.setAttribute("title", "ver orcamento");   
                 a.appendChild(imgVer);

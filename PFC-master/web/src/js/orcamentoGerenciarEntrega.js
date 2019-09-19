@@ -41,7 +41,7 @@ for (let i = 0; i < btn_finaliza.length; i++) {
         xhr.send();
     });
 }
-
+//checa todos os itens e verifica para liberar botão de finalizar orçamento
 const checkFinaliza = () => {
     let completados = true;
     for (let i = 0; i < situacao.length; i++) {
@@ -54,7 +54,7 @@ const checkFinaliza = () => {
 };
 checkFinaliza();
 
-alert(situacao[0].value);
+
 
 btn_fimOrc.addEventListener("click",()=>{
       xhr.open('POST', 'FinalizarOrcamentoAjax?idOrc='+idOrc);
@@ -62,7 +62,7 @@ btn_fimOrc.addEventListener("click",()=>{
             if (xhr.status === 200){
                 if(xhr.responseText === "ok"){
                     alert(xhr.responseText);
-                    window.location.href = "index.jsp";
+                    window.location.href = "orcamentoListar.jsp";
                 }else{
                     alert(xhr.responseText);
                     window.location.href = "ControllerFactory?acao=GerenciarPagamento&id="+idOrc;

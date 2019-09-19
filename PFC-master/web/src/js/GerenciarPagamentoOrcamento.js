@@ -29,8 +29,8 @@ pagar.addEventListener("click", () => {
                 _troco = _troco.toString().replace(".",",");
                 
                 alert("o pagamento foi efetuado");
-                qtPaga.value = "Pago R$"+ _paga;
-                troco.value = "R$" + _troco;
+                qtPaga.value =  _paga;
+                troco.value = _troco;
                 
              // qtPaga.value = "Pago: R$"+_pago;
 

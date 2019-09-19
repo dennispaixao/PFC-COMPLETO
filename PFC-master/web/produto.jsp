@@ -94,7 +94,7 @@
                             <div class=" col-md-12" style="text-align: right">
 
                                 <input type="submit" class="btn " style="background:#00b5bd" name="acao" value="Cadastrar Produto">
-                                <input type="submit" class="btn "  style="background:#e3ed02" name="acao" value="Listar Produto">
+                               
                             </div>
                         </div>
 

@@ -1,9 +1,6 @@
 
 
-    document.querySelector("#cep").addEventListener("change",function(e){
-
-      
-
+document.querySelector("#cep").addEventListener("change",function(e){
 fetch("https://viacep.com.br/ws/"+e.target.value+"/json/")
   .then(response => {
     return response.json()

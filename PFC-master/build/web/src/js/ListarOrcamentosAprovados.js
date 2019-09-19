@@ -34,35 +34,76 @@ const listar = () => {
                 tdDataInsercao.textContent = orcamentos[i].dataInsercao;
                 tr.appendChild(tdDataInsercao);
 
-                let tdSituacao = document.createElement("td");
-                tdSituacao.textContent = orcamentos[i].estado;
-                tr.appendChild(tdSituacao); 
-                
+          
                 let tdFerramentas = document.createElement("td");
 
-                let imgExcluir = document.createElement("img");
+                let imgExcluir = document.createElement("img");               
                 imgExcluir.setAttribute("src", "img/excluir.png");
-                imgExcluir.setAttribute("alt", "excluir");
-                imgExcluir.setAttribute("title", "excluir");
-                imgExcluir.setAttribute("class", "btn");
+                imgExcluir.setAttribute("alt", "excluir");   
+                imgExcluir.setAttribute("title", "excluir");          
                 imgExcluir.setAttribute("id", "btn-exc-" + orcamentos[i].id);
 
                 tdFerramentas.appendChild(imgExcluir);
                 
                 let a = document.createElement("a");
                 a.setAttribute("href","ControllerFactory?acao=AlterarOrcamento&id="+orcamentos[i].id);
-                
                 let imgVer = document.createElement("img");
                 imgVer.setAttribute("src", "img/editar.png");
                 imgVer.setAttribute("alt", "ver orcamento");
                 imgVer.setAttribute("title", "ver orcamento");   
-                a.appendChild(imgVer);
-                
+                a.appendChild(imgVer); 
                 tdFerramentas.appendChild(a);
-
+                
+                let aAprovar = document.createElement("a");
+                aAprovar.setAttribute("href","#");
+                let imgAp = document.createElement("img"); 
+                imgAp.setAttribute("id", "btn-ap-" + orcamentos[i].id);
+                imgAp.setAttribute("src", "img/ok.png");
+                imgAp.setAttribute("class", "btn-ap" + orcamentos[i].id);
+                imgAp.setAttribute("alt", "Aprovar orcamento");
+                imgAp.setAttribute("title", "Aprovar orcamento");   
+                aAprovar.appendChild(imgAp); 
+                tdFerramentas.appendChild(aAprovar);
+                
+                let aPagar = document.createElement("a");
+                aPagar.setAttribute("href","ControllerFactory?acao=GerenciarPagamento&id="+orcamentos[i].id);
+                let imgPagar = document.createElement("img"); 
+                imgPagar.setAttribute("id", "btn-ap-" + orcamentos[i].id);
+                imgPagar.setAttribute("src", "img/coin.png");
+                imgPagar.setAttribute("class", "btn-ap" + orcamentos[i].id);
+                imgPagar.setAttribute("alt", "Inserir Pagamento");
+                imgPagar.setAttribute("title", "Inserir Pagamento");   
+                aPagar.appendChild(imgPagar); 
+                tdFerramentas.appendChild(aPagar);
+               
+                
+                
+                
                 tr.appendChild(tdFerramentas);
+                
+                
+                
 
                 tbody.appendChild(tr);
+                
+                 document.querySelector("#btn-ap-" + orcamentos[i].id).addEventListener("click", (e) => {
+                    if (confirm("Tem certeza que deseja aprovar o orçamento de id=" + orcamentos[i].id)) {
+                        let xhr = new XMLHttpRequest();  
+                            xhr.open('POST', 'AprovarOrcamentoAjax?id='+ orcamentos[i].id);
+                            xhr.onload = function() {
+                                if (xhr.status === 200) {
+                                alert("o orçamento foi aprovado");
+                                window.location.href = "orcamentoListar.jsp";
+                                } 
+
+                                else {
+                                    alert('Request failed.  Returned status of ' + xhr.status);
+                                }
+                            };
+                            xhr.send();                       
+                    }
+                });
+                
 
                 document.querySelector("#btn-exc-" + orcamentos[i].id).addEventListener("click", (e) => {
                     if (confirm("Tem certeza que deseja excluir o orçamento de id=" + orcamentos[i].id)) {

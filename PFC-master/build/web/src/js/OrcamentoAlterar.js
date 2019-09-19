@@ -100,15 +100,11 @@ const calculaTotal = ()=>{
                      ttt += parseFloat(totais[i].textContent);
                }
                document.querySelector("#total-orcamento").value = ttt.toFixed(2);
-               console.log(ttt); 
 };
 
 const addPedido = (id,nome,preco, qt)=>{ 
     let orcamento = document.querySelector("#tabela-orcamento"); 
     orcamento.style.display= "block";
-    
-    
-    
     let elemento = document.querySelectorAll(".tr-"+id);
 
     if (elemento.length<1){

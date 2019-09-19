@@ -13,20 +13,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>JSP Page</title>
        <link href="src/css/tabela.css" rel="stylesheet" type="text/css"/> 
          <link href="src/css/cliente.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
               <%@include file="/menu.jsp" %>    
-        <div id="container">
+        <div class="container">
         <h1 id="listarh1">Clientes</h1> 
 
       
             <%  //recuperar a lista
                 List<Cliente> clientes = (List<Cliente>) request.getAttribute("ListaCliente");
             %>
-            <table border="l">     
+            <table class="table table-dark" border="l">     
                 <thead>
                    
                     <tr>
@@ -90,6 +91,7 @@
                 <% if(request.getAttribute("msg")!= null){ %>
                 <script> alert(" <%= request.getAttribute("msg") %> ");</script>
                 <% } %>
+                
                 
             
     </div>

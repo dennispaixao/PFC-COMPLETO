@@ -7,6 +7,7 @@
 
 <%@page import="br.com.artenativa.model.Usuario"%>
 <link href="src/css/menu.css" type="text/css" rel="stylesheet">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="src/css/normalize.css" />
 <link rel="stylesheet" type="text/css" href="src/css/demo.css" />
@@ -22,62 +23,6 @@
 
 
 
-
- 
-      <!--  <ul>
-         <div>
-            <a href="index.jsp"> <li style="text-align: right"> 
-                    <div id="logo-menu" 
-                         style="  
-                         width:40px;
-                         height:40px;
-                         background-image: url('logoMenu.png');
-                         background-size: 80%;
-                         background-repeat: no-repeat;
-                         background-position: center;
-                         position: absolute;
-                         transition:2s;
-                         top:-10px;
-                         ">
-
-                    </div></a>
-            </li>
-            <li>Cadastrar
-                <ul>
-                    <a href="cliente.jsp"><li>Cliente</li></a>
-                    <a href="funcionario.jsp"><li>Funcionario</li></a>
-                    <a href="fornecedor.jsp"><li>Fornecedor</li></a>
-                    <a href="produto.jsp"><li>Produto</li></a>
-                    <a href="orcamento.jsp"><li>Orçamento</li></a>
-                </ul>
-            </li>
-            <li>Listar
-                <ul>
-                    <a href="ControllerFactory?acao=ListarCliente"><li>Clientes</li></a>
-                    <a href="ControllerFactory?acao=ListarFuncionario"><li>Funcionarios</li></a>
-                    <a href="ControllerFactory?acao=ListarFornecedor"><li>Fornecedores</li></a>
-                    <a href="ControllerFactory?acao=ListarProduto"><li>Produtos</li></a>
-                    <a href="orcamentoListar.jsp"><li>Orçamentos</li></a>
-                </ul>
-            </li>
-
-            <li>Relatórios
-                <ul>
-                    <a href="estoque.jsp"><li>Estoque</li></a>
-                    <a href="#"><li>Orçamentos</li></a>
-                </ul>
-            </li>
-
-            <li>
-                <form method="post" action="ControllerFactory">
-                    <input type="submit" name="acao" value="Deslogar">
-                </form>
-            </li>    
-        </ul>  
-        
-
-    </div> 
-      --> 
  <div class="container" style="position: absolute; z-index: 899999999">
 			<ul id="gn-menu" class="gn-menu-main">
 				<li class="gn-trigger">
@@ -87,27 +32,27 @@
 							<ul class="gn-menu">
 								
 								<li>
-									<a class="gn-icon gn-icon-download" style="background: #00b5bd" >Cadastrar</a>
+									<a class="gn-icon gn-icon-download" style="background: #ccc" >Cadastrar</a>
 									<ul class="gn-submenu ">
-										<li><a class="gn-icon gn-icon-illustrator" href="cliente.jsp" style="background: #00d9df">Cliente</a></li>
-										<li><a class="gn-icon gn-icon-photoshop" href="funcionario.jsp" style="background: #00d9df">Funcionario</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="fornecedor.jsp" style="background: #00d9df">Fornecedor</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="produto.jsp" style="background: #00d9df">Produto</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamento.jsp" style="background: #00d9df">Orçamento</a></li>
+                                                                            <li><a class="gn-icon gn-icon-illustrator" href="cliente.jsp" style="background: #fff">Cliente</a></li>
+										<li><a class="gn-icon gn-icon-photoshop" href="funcionario.jsp" style="background: #fff">Funcionario</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="fornecedor.jsp" style="background: #fff">Fornecedor</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="produto.jsp" style="background: #fff">Produto</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamento.jsp" style="background: #fff">Orçamento</a></li>
 									</ul>
 								</li>
                                                                 <li>
-									<a class="gn-icon gn-icon-download" style="background: #00b5bd" >Listar</a>
+									<a class="gn-icon gn-icon-download" style="background: #ccc" >Listar</a>
 									<ul class="gn-submenu ">
-										<li><a class="gn-icon gn-icon-illustrator" href="ControllerFactory?acao=ListarCliente" style="background: #00d9df">Clientes</a></li>
-										<li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFuncionario" style="background: #00d9df">Funcionarios</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFornecedor" style="background: #00d9df">Fornecedors</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarProduto" style="background: #00d9df">Produtos</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamentoListar.jsp" style="background: #00d9df">Orçamentos</a></li>
+										<li><a class="gn-icon gn-icon-illustrator" href="ControllerFactory?acao=ListarCliente" style="background: #fff">Clientes</a></li>
+										<li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFuncionario" style="background: #fff">Funcionarios</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFornecedor" style="background: #fff">Fornecedors</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarProduto" style="background: #fff">Produtos</a></li>
+                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamentoListar.jsp" style="background: #fff">Orçamentos</a></li>
 									</ul>
-                                                                        <a class="gn-icon gn-icon-download" style="background: #00b5bd" >Relatorios</a>
+                                                                        <a class="gn-icon gn-icon-download" style="background: #ccc" >Relatorios</a>
 									<ul class="gn-submenu ">
-										<li><a class="gn-icon gn-icon-illustrator" href="estoque.jsp" style="background: #00d9df">Estoque</a></li>
+										<li><a class="gn-icon gn-icon-illustrator" href="estoque.jsp" style="background: #fff">Estoque</a></li>
 										
 									</ul>
 								</li>

@@ -32,88 +32,93 @@ import javax.servlet.http.HttpSession;
 public class GerarOrcamentoAjax extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException, SQLException, ClassNotFoundException {
-        
-              response.setContentType("text/html;charset=UTF-8");
-              
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+
+        response.setContentType("text/html;charset=UTF-8");
+
               //mensagem de erro é setada em null e alterada caso ocorra algum erro
-              //no fim só será efetuado o processo caso erro permaneça null
-              String erro = null;
-              //string de resposta para a página solicitante
-              String retorno = "";
-              
-              //recebe-se uma string com os parametros do orçamento
-              String itens = request.getParameter("itens");  
-              //separa-se cada parametro em um indice do array
-              String[] campos  = itens.split(","); 
-              
-              //separa-se cada campo em uma variável
-              String its = campos[0]; //ids dos produtos e quantidades de cada produto separado por 'id : qt'
-              int idCliente = Integer.parseInt(campos[1]);  //id do cliente
-              String dataInicio = ParseDates.parseUnix(campos[2]).toString(); 
-              String dataPrevista = ParseDates.parseUnix(campos[3]).toString();  
-              String descricao = campos[4];  
-              
-              Cliente cli = new Cliente(idCliente);
-                    
-              try {
-                  Cliente checado = new Cliente();
-                  ClienteDAO cliDAO = new ClienteDAO();
-                  checado = cliDAO.buscar(cli);
-                  erro = checado.getNome()==null?"Número do cliente não foi encontrado":null;
-                  
-              }catch(ClassNotFoundException | SQLException e){
-                  erro="Número do cliente não foi encontrado";
-              }
+        //no fim só será efetuado o processo caso erro permaneça null
+        String erro = null;
+        //string de resposta para a página solicitante
+        String retorno = "";
 
+        //recebe-se uma string com os parametros do orçamento
+        String itens = request.getParameter("itens");
+        //separa-se cada parametro em um indice do array
+        String[] campos = itens.split(",");
 
-              if (erro == null ){
-                  HttpSession sessao = request.getSession();//get responsavel
-                  Usuario responsavel = (Usuario) sessao.getAttribute("usuario");
-                  //get data atual em String "" unix
-                  String dataCad = ""+Calendar.getInstance().getTime().getTime();
-                  dataCad = dataCad.substring(0, dataCad.length()-3);
+        //separa-se cada campo em uma variável
+        String its = campos[0]; //ids dos produtos e quantidades de cada produto separado por 'id : qt'
+        int idCliente = Integer.parseInt(campos[1]);  //id do cliente
+        String dataInicio = ParseDates.parseUnix(campos[2]).toString();
+        String dataPrevista = ParseDates.parseUnix(campos[3]).toString();
+        String descricao = campos[4];
 
-                  Orcamento orc = new Orcamento(); 
-                  orc.setCliente(cli); 
-                  orc.setResponsavel(responsavel); 
-                  orc.setDataInsercao(dataCad);
-                  orc.setDataInicio(dataInicio);
-                  orc.setDataPrevista(dataPrevista);
-                  orc.setRelatorio(descricao);
-                  
-                  try{
-                      OrcamentoDAO orcDAO = new OrcamentoDAO(); 
-                      int idOrcInserido = orcDAO.inserir(orc);
-                      String[] itensOrc = its.split(";");   
-                      for(int i = 0 ;i < itensOrc.length ; i++){  
-                          String[] item = itensOrc[i].split(":");   
-                          int idProduto  = Integer.parseInt(item[0]);
-                          Float quantidade = Float.parseFloat(item[1]);
-                          ItemOrcamento iOrc = new ItemOrcamento();
-                          iOrc.setProduto(new Produto(idProduto));
-                          iOrc.setOrcamento(new Orcamento(idOrcInserido));
-                          iOrc.setQuantidade(quantidade);
-                          ItemOrcamentoDAO idao = new ItemOrcamentoDAO();                          
-                          idao.inserir(iOrc); 
-                          
-                      }
-                      
-                      retorno = "O orçamento foi criado!" ;  
-                      
-                  }catch(ClassNotFoundException | SQLException e){
-                      retorno = "Erro ao cadastrar"; 
-                 
-                  }        
-              }else{
-                      retorno = erro;  
-              }
-              
-              
-              response.getWriter().write(retorno);
-              
+        Cliente cli = new Cliente(idCliente);
+
+        try {
+            Cliente checado = new Cliente();
+            ClienteDAO cliDAO = new ClienteDAO();
+            checado = cliDAO.buscar(cli);
+            erro = checado.getNome() == null ? "Número do cliente não foi encontrado" : null;
+
+        } catch (ClassNotFoundException | SQLException e) {
+            erro = "Número do cliente não foi encontrado";
+        }
+
+        if (erro == null) {
+            HttpSession sessao = request.getSession();//get responsavel
+            Usuario responsavel = (Usuario) sessao.getAttribute("usuario");
+            //get data atual em String "" unix
+            String dataCad = "" + Calendar.getInstance().getTime().getTime();
+            dataCad = dataCad.substring(0, dataCad.length() - 3);
+
+            Orcamento orc = new Orcamento();
+            orc.setCliente(cli);
+            orc.setResponsavel(responsavel);
+            orc.setDataInsercao(dataCad);
+            orc.setDataInicio(dataInicio);
+            orc.setDataPrevista(dataPrevista);
+            orc.setRelatorio(descricao);
+
+            try {
+                OrcamentoDAO orcDAO = new OrcamentoDAO();
+                int idOrcInserido = orcDAO.inserir(orc);
+                orc.setId(idOrcInserido);
+                String[] itensOrc = its.split(";");
+                for (int i = 0; i < itensOrc.length; i++) {
+                    String[] item = itensOrc[i].split(":");
+                    int idProduto = Integer.parseInt(item[0]);
+                    Float quantidade = Float.parseFloat(item[1]);
+                    ItemOrcamento iOrc = new ItemOrcamento();
+                    iOrc.setProduto(new Produto(idProduto));
+                    iOrc.setOrcamento(new Orcamento(idOrcInserido));
+                    iOrc.setQuantidade(quantidade);
+                    ItemOrcamentoDAO idao = new ItemOrcamentoDAO();
+                    idao.inserir(iOrc);
+                }
+                
+                //calcula o total
+                double total = 0;
+                for (ItemOrcamento i : new ItemOrcamentoDAO().listar(orc)) {
+                    total += i.getQuantidade() * i.getProduto().getPreco();
+                }
+                orc.setValor(total);
+                new OrcamentoDAO().alterar(orc);
+
+                retorno = "O orçamento foi criado!";
+
+            } catch (ClassNotFoundException | SQLException e) {
+                retorno = "Erro ao cadastrar";
+
+            }
+        } else {
+            retorno = erro;
+        }
+
+        response.getWriter().write(retorno);
+
     }
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -125,6 +130,4 @@ public class GerarOrcamentoAjax extends HttpServlet {
         }
     }
 
-   
-  
 }

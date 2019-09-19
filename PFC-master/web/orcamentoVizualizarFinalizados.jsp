@@ -22,22 +22,62 @@
     </head>
     <body>
         <%@include file="/menu.jsp" %>    
-        <div id="container">
+        <div class="container">
             <% List<ItemOrcamento> itens = (ArrayList<ItemOrcamento>) request.getAttribute("itens"); %>
-            <% Orcamento o = (Orcamento) request.getAttribute("orcamento"); %>
-            <div style="text-align: right; padding:50px">
-                    <h1 id="listarh1">Orçamento <%=o.getId()%></h1> 
-                    <h2>Cliente: <%=o.getCliente().getNome()%> </h2>   
-                    <H2>Responsavel: <%=o.getResponsavel().getNome()%> </H2>   
-                    <H2>Data de insercao: <%=o.getResponsavel().getNome()%> </H2>   
-                    <H2>Data de inicio: <%=ParseDates.formatUnixToDisplay(o.getDataInicio())%> </H2>   
-                    <H2>Data de prevista: <%=ParseDates.formatUnixToDisplay(o.getDataPrevista())%> </H2>   
-                    <H2>Data do fim: <%=ParseDates.formatUnixToDisplay(o.getDataFim())%> </H2>
-                      <H2>Valor: <%=o.getValor()%> </H2>
-                    <textArea>Relatorio: <%=o.getRelatorio()%> </textArea>
+            <% Orcamento o = (Orcamento) request.getAttribute("orcamento");%>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card bg-dark text-light">
+                                <div class="card-header">
+                                <h1>Orçamento <%=o.getId()%></h1>
+                                </div>
+                                <div class="card-body">
+                                <p>Cliente: <%=o.getCliente().getNome()%> <%=o.getCliente().getSobrenome()%></p> 
+                                <p>id do cliente: <%=o.getCliente().getId()%></p> 
+                                <p>Responsavel: <%=o.getResponsavel().getNome()%> </p> 
+                                <p>Valor: <%=o.getValor()%> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-body bg-dark text-light">
+                                <p>Data de insercao: <%=ParseDates.formatUnixToDisplay(o.getDataInsercao())%> </p>   
+                                <p>Data de inicio: <%=ParseDates.formatUnixToDisplayNoHour(o.getDataInicio())%> </p>   
+                                <p>Data de prevista: <%=ParseDates.formatUnixToDisplayNoHour(o.getDataPrevista())%> </p>   
+                                <p>Data do fim: <%=ParseDates.formatUnixToDisplay(o.getDataFim())%> </p>
+                            </div>
+                        </div>      
+                    </div> 
+                </div>
+                <div class="col-md-6">
+
+                    <div class="card bg-dark text-light">
+                        <div class="card-header">
+                        <h3>Relatorio: </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">     
+                            <div class="col-md-12">
+                                <textarea style="height: 200px" class="form-control" id="descricao" rows="12"><%=o.getRelatorio()%> </textarea>
+                            </div>
+                         </div>
+                        </div>
+                    </div>    
+                   
+                </div>
+                
+            </div>
+        
                   
-               </div> 
-                <table border="l">     
+            <div class="row">  
+             
+               <label for=descricao class="col-12"><h2>Itens</h2></label>
+                           
+                        
+  
+                <table class="table table-dark">     
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -46,19 +86,19 @@
 
                         </tr>
                     </thead>
-                      <% for(ItemOrcamento i : itens){ %>  
+                    <% for (ItemOrcamento i : itens) {%>  
     
                     <tbody>
                         <input type="hidden" value="<%=i.getStatus()%>" id="st">
                         
                         <td id="idItem"><%=i.getId()%> </td> 
-                        <td><%= i.getProduto().getNome() %> </td> 
-                        <td><%= i.getQuantidade() %> </td>   
+                        <td><%= i.getProduto().getNome()%> </td> 
+                        <td><%= i.getQuantidade()%> </td>   
 
                    </tbody>   
-                   <% } %>
+                    <% }%>
                 </table>
-
+             </div>       
 
         </div>  
 
