@@ -50,8 +50,8 @@ public class ClienteDAO implements ClienteDAOInterface {
     @Override
     public boolean inserir(Cliente p) {
         
-        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular)"
-                + "  values (?,?,?,?,1, ?,?,?,?,?);";
+        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular, cep, rua, bairro, cidade, uf, numero, complemento)"
+                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement ps = connection.prepareCall(INSERT);
@@ -64,6 +64,13 @@ public class ClienteDAO implements ClienteDAOInterface {
             ps.setString(7, p.getEmail());
             ps.setString(8, p.getTelefone());
             ps.setString(9, p.getCelular());
+            ps.setString(10, p.getEndereco().getCep());
+            ps.setString(11, p.getEndereco().getLogradouro());
+            ps.setString(12, p.getEndereco().getBairro());
+            ps.setString(13, p.getEndereco().getCidade());
+            ps.setString(14, p.getEndereco().getUF());
+            ps.setString(15, p.getEndereco().getNumero());
+            ps.setString(16, p.getEndereco().getComplemento());
          
             
             //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
