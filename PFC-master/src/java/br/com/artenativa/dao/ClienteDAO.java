@@ -50,32 +50,27 @@ public class ClienteDAO implements ClienteDAOInterface {
     @Override
     public boolean inserir(Cliente p) {
         
-        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular, cep, rua, bairro, cidade, uf, numero, complemento)"
-                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?,?,?,?,?,?);";
+        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular, cep, rua)"
+                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?);";
 
         try {
-            PreparedStatement ps = connection.prepareCall(INSERT);
-            ps.setString(1, p.getNome());
-            ps.setString(2, p.getSobrenome());
-            ps.setString(3, p.getSexo());
-            ps.setString(4, p.getDataCadastro());
-            ps.setString(5, p.getRg());
-            ps.setString(6, p.getCpf());
-            ps.setString(7, p.getEmail());
-            ps.setString(8, p.getTelefone());
-            ps.setString(9, p.getCelular());
-            ps.setString(10, p.getEndereco().getCep());
-            ps.setString(11, p.getEndereco().getLogradouro());
-            ps.setString(12, p.getEndereco().getBairro());
-            ps.setString(13, p.getEndereco().getCidade());
-            ps.setString(14, p.getEndereco().getUF());
-            ps.setString(15, p.getEndereco().getNumero());
-            ps.setString(16, p.getEndereco().getComplemento());
-         
-            
-            //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
-            ps.executeUpdate();
-            ps.close();
+            try (PreparedStatement ps = connection.prepareCall(INSERT)) {
+                ps.setString(1, p.getNome());
+                ps.setString(2, p.getSobrenome());
+                ps.setString(3, p.getSexo());
+                ps.setString(4, p.getDataCadastro());
+                ps.setString(5, p.getRg());
+                ps.setString(6, p.getCpf());
+                ps.setString(7, p.getEmail());
+                ps.setString(8, p.getTelefone());
+                ps.setString(9, p.getCelular());
+                ps.setString(10, p.getEndereco().getCep());
+                ps.setString(11, p.getEndereco().getRua());
+                
+                
+                //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
+                ps.executeUpdate();
+            }
             connection.close();
 
         } catch (SQLException ex) {

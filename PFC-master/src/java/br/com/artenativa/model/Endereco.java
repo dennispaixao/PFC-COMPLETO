@@ -15,18 +15,18 @@ public class Endereco {
     private String cidade;
     private String cep;
     private String bairro;
-    private String logradouro;
+    private String rua;
     private String numero;
     private String complemento; 
     private String pontoReferencia; 
 
-    public Endereco(String pais, String UF, String cidade, String cep, String bairro, String logradouro, String numeroResidencia, String complemento, String pontoReferencia) {
+    public Endereco(String pais, String UF, String cidade, String cep, String bairro, String rua, String numeroResidencia, String complemento, String pontoReferencia) {
         this.pais = pais;
         this.UF = UF;
         this.cidade = cidade;
         this.cep = cep;
         this.bairro = bairro;
-        this.logradouro = logradouro;
+        this.rua = rua;
         this.numero = numeroResidencia;
         this.complemento = complemento;
         this.pontoReferencia = pontoReferencia;
@@ -75,12 +75,12 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getRua() {
+        return rua;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public String getNumero() {

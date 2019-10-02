@@ -59,7 +59,7 @@ public class CadastrarClienteAction implements ICommand {
         
         Endereco end = new Endereco();
         end.setCep(cep);
-        end.setLogradouro(rua);
+        end.setRua(rua);
         end.setBairro(bairro);
         end.setCidade(cidade);
         end.setUF(uf);
