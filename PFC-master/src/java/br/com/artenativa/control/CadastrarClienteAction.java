@@ -40,13 +40,11 @@ public class CadastrarClienteAction implements ICommand {
         String rua = request.getParameter("rua");
         String bairro = request.getParameter("bairro");
         String cidade = request.getParameter("cidade");
-        String uf = request.getParameter("uf");
+        String uf = request.getParameter("UF");
         String numero = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
-        
 
         Cliente p = new Cliente();
-
         p.setNome(nome);
         p.setSobrenome(sobrenome);
         p.setDataCadastro(ParseDates.getNowUnix().toString());    
@@ -65,7 +63,7 @@ public class CadastrarClienteAction implements ICommand {
         end.setUF(uf);
         end.setNumero(numero);
         end.setComplemento(complemento);
-        
+    
         p.setEndereco(end);
 
         //validação se tudo ok msg == null

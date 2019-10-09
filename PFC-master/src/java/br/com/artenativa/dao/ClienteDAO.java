@@ -50,8 +50,8 @@ public class ClienteDAO implements ClienteDAOInterface {
     @Override
     public boolean inserir(Cliente p) {
         
-        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular, cep, rua)"
-                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?);";
+        final String INSERT = "insert into cliente (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular, cep, rua, bairro, cidade, uf, numero, complemento)"
+                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try {
             try (PreparedStatement ps = connection.prepareCall(INSERT)) {
@@ -66,6 +66,11 @@ public class ClienteDAO implements ClienteDAOInterface {
                 ps.setString(9, p.getCelular());
                 ps.setString(10, p.getEndereco().getCep());
                 ps.setString(11, p.getEndereco().getRua());
+                ps.setString(12, p.getEndereco().getBairro());
+                ps.setString(13, p.getEndereco().getCidade());
+                ps.setString(14, p.getEndereco().getUF());
+                ps.setString(15, p.getEndereco().getNumero());
+                ps.setString(16, p.getEndereco().getComplemento());
                 
                 
                 //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
@@ -89,12 +94,12 @@ public class ClienteDAO implements ClienteDAOInterface {
     public boolean alterar(Cliente p) {
 
         final String ALTERAR = "update cliente set nome = ?,  sobrenome = ?, sexo = ?,"
-                + " situacao = ?, rg = ?,cpf = ?, email = ?, telefone = ?, celular = ? where id = ?";
+                + " situacao = ?, rg = ?, cpf = ?, email = ?, telefone = ?, celular = ?,"
+                + " cep = ?, rua = ?, bairro = ?, cidade = ?, uf = ?, numero = ?, complemento = ? where id = ?";
 
         try {
 
-            PreparedStatement ps = connection.prepareCall(ALTERAR);
-            
+            PreparedStatement ps = connection.prepareCall(ALTERAR);           
             ps.setString(1, p.getNome());
             ps.setString(2, p.getSobrenome());
             ps.setString(3, p.getSexo());
@@ -104,7 +109,14 @@ public class ClienteDAO implements ClienteDAOInterface {
             ps.setString(7, p.getEmail());
             ps.setString(8, p.getTelefone());
             ps.setString(9, p.getCelular());
-            ps.setInt(10, p.getId());
+            ps.setString(10, p.getEndereco().getCep());
+            ps.setString(11, p.getEndereco().getRua());
+            ps.setString(12, p.getEndereco().getBairro());
+            ps.setString(13, p.getEndereco().getCidade());
+            ps.setString(14, p.getEndereco().getUF());
+            ps.setString(15, p.getEndereco().getNumero());
+            ps.setString(16, p.getEndereco().getComplemento());
+            ps.setInt(17, p.getId());
             
             ps.executeUpdate();
             ps.close();
@@ -142,7 +154,7 @@ public class ClienteDAO implements ClienteDAOInterface {
             try {
                 connection.close();
             } catch (SQLException ex1) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
         return true;
@@ -198,8 +210,7 @@ public class ClienteDAO implements ClienteDAOInterface {
 
             // como a query ira retornar somente um registro, faremos o NEXT
             rs.next();
-
-      
+            
             p.setNome(rs.getString("nome"));
             p.setSobrenome(rs.getString("sobrenome"));
             p.setRg(rs.getString("rg"));
@@ -208,14 +219,15 @@ public class ClienteDAO implements ClienteDAOInterface {
             p.setEmail(rs.getString("email"));
             p.setTelefone(rs.getString("telefone"));
             p.setCelular(rs.getString("celular"));
-  
-          //  p.getEndereco().setPais(rs.getString("pais"));
-          //  p.getEndereco().setUF(rs.getString("estado"));
-          //  p.getEndereco().setCidade(rs.getString("cidade"));
-          //  p.getEndereco().setLogradouro(rs.getString("rua"));
-          //  p.getEndereco().setNumero(rs.getString("numero"));
-          //  p.getEndereco().setCep(rs.getString("cep"));    
-         //   p.getEndereco().setComplemento(rs.getString("complemento"));
+            p.getEndereco().setCep(rs.getString("cep"));
+            p.getEndereco().setRua(rs.getString("rua"));
+            p.getEndereco().setBairro(rs.getString("bairro"));
+            p.getEndereco().setCidade(rs.getString("cidade"));
+            p.getEndereco().setUF(rs.getString("uf"));
+            p.getEndereco().setNumero(rs.getString("numero"));
+            p.getEndereco().setComplemento(rs.getString("complemento"));
+            
+ 
       
             
         }catch (SQLException ex) {

@@ -18,10 +18,9 @@
 
     
        <% 
+       
            Pessoa p = (Pessoa) request.getAttribute("cliente");
-     
-       
-       
+
        %>
     
               
@@ -106,15 +105,12 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group row">
                             <label for="cep" class="col-md-2 col-form-label">Cep:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="cep" id="cep" 
+                                <input type="text" class="form-control" name="cep" id="cep" value="<%= p.getEndereco().getCep()%>"
                                        placeholder="Cep">
                             </div>
                         </div>
@@ -122,24 +118,24 @@
                         <div class="form-group row">
                             <label for="rua" class="col-md-2 col-form-label">Rua:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="rua" name=rua"
+                                <input type="text" class="form-control" id="rua" name="rua" value="<%= p.getEndereco().getRua() %>"
                                        placeholder="Rua">
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="bairro" class="col-md-2 col-form-label">Bairro:</label>
+                            <label for="bairro" class="col-md-2 col-form-label" >Bairro:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="bairro" name=bairro"
+                                <input type="text" class="form-control" id="bairro" name="bairro" value="<%= p.getEndereco().getBairro() %>"
                                        placeholder="Bairro">
                             </div>
                         </div>
 
                         
                         <div class="form-group row">
-                            <label for="cidade" class="col-md-2 col-form-label">Cidade:</label>
+                            <label for="cidade" class="col-md-2 col-form-label"  >Cidade:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="cidade" name=cidade"
+                                <input type="text" class="form-control" id="cidade" name="cidade" value="<%= p.getEndereco().getCidade() %>"
                                        placeholder="Cidade">
                             </div>
                         </div>
@@ -148,7 +144,7 @@
                         <div class="form-group row">
                             <label for="UF" class="col-md-2 col-form-label">UF:</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="uf" name=UF"
+                                <input type="text" class="form-control" id="uf" name="UF" value="<%= p.getEndereco().getUF() %>"
                                        placeholder="UF">
                             </div>
                         </div>
@@ -156,7 +152,7 @@
                          <div class="form-group row">
                             <label for="numero" class="col-md-2 col-form-label">Numero:</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name=numero"
+                                <input type="text" class="form-control" name="numero" value="<%= p.getEndereco().getNumero() %>"
                                        placeholder="ex:88)">
                             </div>
                         </div>
@@ -164,7 +160,7 @@
                          <div class="form-group row">
                             <label for="complemento" class="col-md-2 col-form-label">Comp.:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="complemento" name=complemento"
+                                <input type="text" class="form-control" id="complemento" name="complemento" value="<%= p.getEndereco().getComplemento() %>"
                                        placeholder="complemento">
                             </div>
                         </div>

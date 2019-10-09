@@ -65,7 +65,7 @@
 
                   </form>   
                             </div> 
-                           <table class="table table-dark" border="l">    
+                       <table class="table  text-dark" style="background:#bcbcbc" border="l">    
 
                                <thead>
                                    <tr>

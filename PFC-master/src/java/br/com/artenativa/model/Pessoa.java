@@ -30,7 +30,7 @@ public class Pessoa {
     private String email;
     private String telefone;
     private String celular;
-    private Endereco endereco;
+    private Endereco endereco = new Endereco();
 
     public int getSituacao() {
         return situacao;

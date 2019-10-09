@@ -7,6 +7,7 @@ package br.com.artenativa.control;
 
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.model.Cliente;
+import br.com.artenativa.model.Endereco;
 import br.com.artenativa.util.Validator;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -34,7 +35,16 @@ public class SalvarClienteAction implements ICommand {
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String celular = request.getParameter("celular");
-
+        String cep = request.getParameter("cep");
+        String rua = request.getParameter("rua");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String UF = request.getParameter("UF");
+        String numero = request.getParameter("numero");
+        String complemento = request.getParameter("complemento");
+            
+        
+        
         Cliente p = new Cliente(id);
         p.setNome(nome);
         p.setSobrenome(sobrenome);
@@ -44,7 +54,16 @@ public class SalvarClienteAction implements ICommand {
         p.setEmail(email);
         p.setTelefone(telefone);
         p.setCelular(celular);
-        
+        Endereco end = new Endereco();
+        end.setCep(cep);
+        end.setRua(rua);
+        end.setBairro(bairro);
+        end.setCidade(cidade);
+        end.setUF(UF);
+        end.setNumero(numero);
+        end.setComplemento(complemento);
+        p.setEndereco(end);
+           
 
         //validação se tudo ok msg == null
         Validator vl = new Validator();
