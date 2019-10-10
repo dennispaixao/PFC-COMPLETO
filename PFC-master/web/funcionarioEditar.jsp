@@ -119,7 +119,7 @@
                         <div class="form-group row">
                             <label for="rua" class="col-md-2 col-form-label">Rua:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="rua" name=rua"
+                                <input type="text" class="form-control" id="rua" name="rua"
                                        placeholder="Rua">
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                         <div class="form-group row">
                             <label for="bairro" class="col-md-2 col-form-label">Bairro:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="bairro" name=bairro"
+                                <input type="text" class="form-control" id="bairro" name="bairro"
                                        placeholder="Bairro">
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                         <div class="form-group row">
                             <label for="cidade" class="col-md-2 col-form-label">Cidade:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="cidade" name=cidade"
+                                <input type="text" class="form-control" id="cidade" name="cidade"
                                        placeholder="Cidade">
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                         <div class="form-group row">
                             <label for="UF" class="col-md-2 col-form-label">UF:</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="uf" name=UF"
+                                <input type="text" class="form-control" id="uf" name="UF"
                                        placeholder="UF">
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                          <div class="form-group row">
                             <label for="numero" class="col-md-2 col-form-label">Numero:</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name=numero"
+                                <input type="text" class="form-control" name="numero"
                                        placeholder="ex:88)">
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                          <div class="form-group row">
                             <label for="complemento" class="col-md-2 col-form-label">Comp.:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="complemento" name=complemento"
+                                <input type="text" class="form-control" id="complemento" name="complemento"
                                        placeholder="complemento">
                             </div>
                         </div>

@@ -6,10 +6,11 @@
 package br.com.artenativa.control;
 
 import br.com.artenativa.dao.FuncionarioDAO;
+import br.com.artenativa.model.Endereco;
 import br.com.artenativa.model.Funcionario;
+import br.com.artenativa.util.ParseDates;
 import br.com.artenativa.util.Validator;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,6 @@ public class CadastrarFuncionarioAction implements ICommand {
 
     @Override
     public HttpServletRequest executar(HttpServletRequest request, HttpServletResponse response) {
-        
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String rg= request.getParameter("rg");   
@@ -34,21 +34,35 @@ public class CadastrarFuncionarioAction implements ICommand {
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String celular = request.getParameter("celular");
+        String cep = request.getParameter("cep");
+        String rua = request.getParameter("rua");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String uf = request.getParameter("UF");
+        String numero = request.getParameter("numero");
+        String complemento = request.getParameter("complemento");
 
         Funcionario p = new Funcionario();
-
         p.setNome(nome);
         p.setSobrenome(sobrenome);
-        //dataCad = now unix time
-        String dataCad = ""+Calendar.getInstance().getTime().getTime();
-        //retirar os milisegundos do unix time
-        p.setDataCadastro(dataCad.substring(0, dataCad.length()-3));      
+        p.setDataCadastro(ParseDates.getNowUnix().toString());    
         p.setRg(rg);
         p.setCpf(cpf); 
         p.setEmail(email);
         p.setTelefone(telefone);
         p.setCelular(celular);
         p.setSexo(sexo);
+        
+        Endereco end = new Endereco();
+        end.setCep(cep);
+        end.setRua(rua);
+        end.setBairro(bairro);
+        end.setCidade(cidade);
+        end.setUF(uf);
+        end.setNumero(numero);
+        end.setComplemento(complemento);
+    
+        p.setEndereco(end);
 
         //validação se tudo ok msg == null
       
@@ -64,7 +78,7 @@ public class CadastrarFuncionarioAction implements ICommand {
         // msg = vl.validaCPF(cpf);
         msg = vl.validaString(sobrenome, "Sobrenome", 2, 80, false); 
         msg = vl.validaString(nome, "Nome", 2, 40, false); //ultima validação feita ex: nome não pode ficar em branco
-       
+        msg = vl.validaCPF(cpf);
         
   
         
@@ -75,9 +89,9 @@ public class CadastrarFuncionarioAction implements ICommand {
                 
 
                 if("f".equals(sexo))
-                    msg = "Funcionaria " + nome + " " + sobrenome + " cadastrada com sucesso";
+                    msg = "Funcionario " + nome + " " + sobrenome + " cadastrada com sucesso";
                 else    
-                    msg = "Funcionario " + nome + " " + sobrenome + " cadastrado com sucesso";
+                     msg = "Funcionario " + nome + " " + sobrenome + " cadastrado com sucesso";
                 
                 
                 
@@ -89,17 +103,6 @@ public class CadastrarFuncionarioAction implements ICommand {
         request.setAttribute("msg", msg);
         request.setAttribute("pageRedirect", "funcionario.jsp");
         return request;
-    }
-
-    public static boolean isNumeric(String s) {
-        try {
-            Long.parseLong(s);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-    }
-
-  
-
+       
+}
 }

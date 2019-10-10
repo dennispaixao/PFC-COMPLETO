@@ -18,7 +18,7 @@
         HttpSession sessao = request.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         if (usuario.getNome() != null) {
-            sessao.setMaxInactiveInterval(100000);
+            sessao.setMaxInactiveInterval(1000000);
 %>
 
 

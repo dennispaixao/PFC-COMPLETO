@@ -1,8 +1,10 @@
 
+import br.com.artenativa.dao.FuncionarioDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
 import br.com.artenativa.model.Cliente;
+import br.com.artenativa.model.Funcionario;
 import br.com.artenativa.model.ItemOrcamento;
 import br.com.artenativa.model.Orcamento;
 import br.com.artenativa.model.Produto;
@@ -119,7 +121,27 @@ public class teste {
     System.out.println(i.getProduto().getNome());
     */
   
-        System.out.println(MD5.md5("123"));
+  //      System.out.println(MD5.md5("123"));
+        
+        
+          //  nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular
+        
+        
+        
+        Funcionario f = new Funcionario();
+        f.setNome("nssome");
+        f.setSobrenome("sobssrenome");
+    
+        
+        FuncionarioDAO fdao = new FuncionarioDAO();
+        fdao.inserir(f);
+        
+ 
+        
+        
+        
+        
+        
     
     
 }}

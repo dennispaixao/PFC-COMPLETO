@@ -49,8 +49,10 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
     @Override
     public boolean inserir(Funcionario p) {
         
-        final String INSERT = "insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular)"
-                + "  values (?,?,?,?,1, ?,?,?,?,?);";
+
+        final String INSERT = "insert into funcionario (nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular,"
+                + "cep, rua, bairro, cidade, uf, numero, complemento)"
+                + "  values (?,?,?,?,1, ?,?,?,?,?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement ps = connection.prepareCall(INSERT);
@@ -63,12 +65,19 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
             ps.setString(7, p.getEmail());
             ps.setString(8, p.getTelefone());
             ps.setString(9, p.getCelular());
+            ps.setString(10, p.getEndereco().getCep());
+            ps.setString(11, p.getEndereco().getRua());
+            ps.setString(12, p.getEndereco().getBairro());
+            ps.setString(13, p.getEndereco().getCidade());
+            ps.setString(14, p.getEndereco().getUF());
+            ps.setString(15, p.getEndereco().getNumero());
+            ps.setString(16, p.getEndereco().getComplemento());
          
             //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
             ps.executeUpdate();
             ps.close();
             connection.close();
-
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             try {
@@ -76,8 +85,9 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
             } catch (SQLException ex1) {
                 Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex1);
             }
+            return false;
         }
-        return true;
+      
         
     }
 
