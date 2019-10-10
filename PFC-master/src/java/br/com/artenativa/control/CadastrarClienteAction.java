@@ -62,8 +62,7 @@ public class CadastrarClienteAction implements ICommand {
         end.setCidade(cidade);
         end.setUF(uf);
         end.setNumero(numero);
-        end.setComplemento(complemento);
-    
+        end.setComplemento(complemento);   
         p.setEndereco(end);
 
         //validação se tudo ok msg == null

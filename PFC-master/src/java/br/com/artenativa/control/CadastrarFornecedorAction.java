@@ -6,6 +6,7 @@
 package br.com.artenativa.control;
 
 import br.com.artenativa.dao.FornecedorDAO;
+import br.com.artenativa.model.Endereco;
 import br.com.artenativa.model.Fornecedor;
 import br.com.artenativa.util.Validator;
 import java.sql.SQLException;
@@ -31,6 +32,13 @@ public class CadastrarFornecedorAction implements ICommand {
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String celular = request.getParameter("celular");
+        String cep = request.getParameter("cep");
+        String rua = request.getParameter("rua");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String uf = request.getParameter("UF");
+        String numero = request.getParameter("numero");
+        String complemento = request.getParameter("complemento");
 
         Fornecedor p = new Fornecedor();
 
@@ -41,6 +49,16 @@ public class CadastrarFornecedorAction implements ICommand {
         p.setEmail(email);
         p.setTelefone(telefone);
         p.setCelular(celular);
+        
+        Endereco end = new Endereco();
+        end.setCep(cep);
+        end.setRua(rua);
+        end.setBairro(bairro);
+        end.setCidade(cidade);
+        end.setUF(uf);
+        end.setNumero(numero);
+        end.setComplemento(complemento);
+        p.setEndereco(end);
 
         //validação se tudo ok msg == null
       

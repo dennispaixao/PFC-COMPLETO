@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.dao;
 
+import br.com.artenativa.model.Endereco;
 import br.com.artenativa.model.Fornecedor;
 import br.com.artenativa.util.ConnectionFactory;
 import java.sql.Connection;
@@ -53,10 +54,9 @@ public class FornecedorDAO implements FornecedorDAOInterface {
         
         final String INSERT = "insert into fornecedor "
                 + "(datacadastro, nome, situacao,"
-                + " cnpj, email, telefone, celular)"
-              //  + " pais,"
-              //  + " estado, cidade, bairro, rua, numero, cep)"
-                +"values(?, ?, 1, ?, ?, ?, ?);";//??????
+                + " cnpj, email, telefone, celular,"
+                + "cep, rua, bairro, cidade, uf, numero, complemento)"     
+                +"values(?, ?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 
 
@@ -68,14 +68,14 @@ public class FornecedorDAO implements FornecedorDAOInterface {
             ps.setString(4, p.getEmail());
             ps.setString(5, p.getTelefone());
             ps.setString(6, p.getCelular());
-       /*   ps.setString(7, p.getEndereco().getPais());
-            ps.setString(8, p.getEndereco().getUF());
-            ps.setString(9, p.getEndereco().getCidade());
-            ps.setString(10, p.getEndereco().getBairro());
-            ps.setString(11, p.getEndereco().getLogradouro());
+            ps.setString(7, p.getEndereco().getCep());
+            ps.setString(8, p.getEndereco().getRua());
+            ps.setString(9, p.getEndereco().getBairro());
+            ps.setString(10, p.getEndereco().getCidade());
+            ps.setString(11, p.getEndereco().getUF());
             ps.setString(12, p.getEndereco().getNumero());
-            ps.setString(13, p.getEndereco().getCep());*/
-        
+            ps.setString(13, p.getEndereco().getComplemento());
+
             //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
             ps.executeUpdate();
             ps.close();
@@ -96,8 +96,8 @@ public class FornecedorDAO implements FornecedorDAOInterface {
     @Override
     public boolean alterar(Fornecedor p) {
 
-        final String ALTERAR = "update fornecedor set nome = ?,  cnpj = ?, email = ?, telefone = ?,"
-                + " celular = ?  where id = ?";
+        final String ALTERAR = "update fornecedor set nome = ?,  cnpj = ?, email = ?, telefone = ?, celular = ?,"
+                + "cep = ? , rua = ? , bairro = ?, uf =?, cidade = ?, numero = ?, complemento =?   where id = ?";
 
         try {
 
@@ -108,7 +108,14 @@ public class FornecedorDAO implements FornecedorDAOInterface {
             ps.setString(3, p.getEmail());
             ps.setString(4, p.getTelefone());
             ps.setString(5, p.getCelular());
-            ps.setInt(6, p.getId());
+            ps.setString(6, p.getEndereco().getCep());
+            ps.setString(7, p.getEndereco().getRua());
+            ps.setString(8, p.getEndereco().getBairro());
+            ps.setString(9, p.getEndereco().getCidade());
+            ps.setString(10, p.getEndereco().getUF());
+            ps.setString(11, p.getEndereco().getNumero());
+            ps.setString(12, p.getEndereco().getComplemento());
+            ps.setInt(13, p.getId());
             
             ps.executeUpdate();
             ps.close();
@@ -202,31 +209,25 @@ public class FornecedorDAO implements FornecedorDAOInterface {
             // como a query ira retornar somente um registro, faremos o NEXT
             rs.next();
 
-      
             p.setNome(rs.getString("nome"));
             p.setCnpj(rs.getString("cnpj"));
             p.setEmail(rs.getString("email"));
             p.setTelefone(rs.getString("telefone"));
             p.setCelular(rs.getString("celular"));
-  
-          //  p.getEndereco().setPais(rs.getString("pais"));
-          //  p.getEndereco().setUF(rs.getString("estado"));
-          //  p.getEndereco().setCidade(rs.getString("cidade"));
-          //  p.getEndereco().setLogradouro(rs.getString("rua"));
-          //  p.getEndereco().setNumero(rs.getString("numero"));
-          //  p.getEndereco().setCep(rs.getString("cep"));    
-         //   p.getEndereco().setComplemento(rs.getString("complemento"));
-      
+            Endereco end = new Endereco();
+            end.setCep(rs.getString("cep"));
+            end.setRua(rs.getString("rua"));
+            end.setBairro(rs.getString("bairro"));
+            end.setCidade(rs.getString("cidade"));
+            end.setUF(rs.getString("uf"));
+            end.setNumero(rs.getString("numero"));
+            end.setComplemento(rs.getString("complemento"));
+            p.setEndereco(end);
             
-        }catch (SQLException ex) {
-            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-          
-        }
-        try {
             connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }catch (SQLException ex) {
+            
+        }  
        return p;
     }
 
