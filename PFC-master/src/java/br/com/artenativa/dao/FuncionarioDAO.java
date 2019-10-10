@@ -95,7 +95,8 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
     public boolean alterar(Funcionario p) {
 
         final String ALTERAR = "update funcionario set nome = ?,  sobrenome = ?, sexo = ?,"
-                + " situacao = ?, rg = ?,cpf = ?, email = ?, telefone = ?, celular = ? where id = ?";
+                + " situacao = ?, rg = ?,cpf = ?, email = ?, telefone = ?, celular = ?,"
+                + " cep = ?, rua =?, bairro =?, cidade =?, uf =?, numero =?, complemento =? where id = ?";
 
         try {
 
@@ -110,7 +111,15 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
             ps.setString(7, p.getEmail());
             ps.setString(8, p.getTelefone());
             ps.setString(9, p.getCelular());
-            ps.setInt(10, p.getId());
+            ps.setString(10, p.getEndereco().getCep());
+            ps.setString(11, p.getEndereco().getRua());
+            ps.setString(12, p.getEndereco().getBairro());
+            ps.setString(13, p.getEndereco().getCidade());  
+            ps.setString(14, p.getEndereco().getUF());  
+            ps.setString(15, p.getEndereco().getNumero());
+            ps.setString(16, p.getEndereco().getComplemento());
+            
+            ps.setInt(17, p.getId());
             
             ps.executeUpdate();
             ps.close();
@@ -214,14 +223,13 @@ public class FuncionarioDAO implements FuncionarioDAOInterface{
             p.setEmail(rs.getString("email"));
             p.setTelefone(rs.getString("telefone"));
             p.setCelular(rs.getString("celular"));
-  
-          //  p.getEndereco().setPais(rs.getString("pais"));
-          //  p.getEndereco().setUF(rs.getString("estado"));
-          //  p.getEndereco().setCidade(rs.getString("cidade"));
-          //  p.getEndereco().setLogradouro(rs.getString("rua"));
-          //  p.getEndereco().setNumero(rs.getString("numero"));
-          //  p.getEndereco().setCep(rs.getString("cep"));    
-         //   p.getEndereco().setComplemento(rs.getString("complemento"));
+            p.getEndereco().setCep(rs.getString("cep")); 
+            p.getEndereco().setBairro(rs.getString("bairro")); 
+            p.getEndereco().setUF(rs.getString("uf"));
+            p.getEndereco().setCidade(rs.getString("cidade"));
+            p.getEndereco().setRua(rs.getString("rua"));
+            p.getEndereco().setNumero(rs.getString("numero"));
+            p.getEndereco().setComplemento(rs.getString("complemento"));
       
             
         }catch (SQLException ex) {
