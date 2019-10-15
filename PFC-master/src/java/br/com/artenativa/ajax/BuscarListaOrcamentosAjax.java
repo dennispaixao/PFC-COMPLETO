@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.Orcamento;
@@ -20,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,7 +44,11 @@ public class BuscarListaOrcamentosAjax extends HttpServlet {
               
               int sit = Integer.parseInt(request.getParameter("situacao")); 
               String retorno; 
+              HttpSession sessao = request.getSession();
               try{  
+                if (AcessoAdministrativo.validaSessao(sessao)) { 
+                  
+                  
                    OrcamentoDAO odao = new OrcamentoDAO();
                    ArrayList<Orcamento> orcamentos = odao.listar(sit);
                    ArrayList<OrcamentoMock> omocks = new ArrayList();    
@@ -60,6 +66,7 @@ public class BuscarListaOrcamentosAjax extends HttpServlet {
                    ParseJson pj = new ParseJson();
                    retorno = pj.parseJson((ArrayList)omocks);
                    response.getWriter().write(retorno); 
+                }
               }catch(IOException | ClassNotFoundException | SQLException e){
                         response.getWriter().write("Nenhum produto encontrado");
               }

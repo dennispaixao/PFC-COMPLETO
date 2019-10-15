@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
@@ -33,7 +34,10 @@ public class GerarOrcamentoAjax extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
-
+              String msg= "para finalizar o orçamento é preciso quitar o débito";
+              HttpSession sessao = request.getSession();
+   
+                    
         response.setContentType("text/html;charset=UTF-8");
 
               //mensagem de erro é setada em null e alterada caso ocorra algum erro
@@ -57,17 +61,18 @@ public class GerarOrcamentoAjax extends HttpServlet {
         Cliente cli = new Cliente(idCliente);
 
         try {
+            if (AcessoAdministrativo.validaSessao(sessao)) { 
             Cliente checado = new Cliente();
             ClienteDAO cliDAO = new ClienteDAO();
             checado = cliDAO.buscar(cli);
             erro = checado.getNome() == null ? "Número do cliente não foi encontrado" : null;
+            }
 
         } catch (ClassNotFoundException | SQLException e) {
             erro = "Número do cliente não foi encontrado";
         }
 
         if (erro == null) {
-            HttpSession sessao = request.getSession();//get responsavel
             Usuario responsavel = (Usuario) sessao.getAttribute("usuario");
             //get data atual em String "" unix
             String dataCad = "" + Calendar.getInstance().getTime().getTime();
@@ -82,6 +87,7 @@ public class GerarOrcamentoAjax extends HttpServlet {
             orc.setRelatorio(descricao);
 
             try {
+                if (AcessoAdministrativo.validaSessao(sessao)) { 
                 OrcamentoDAO orcDAO = new OrcamentoDAO();
                 int idOrcInserido = orcDAO.inserir(orc);
                 orc.setId(idOrcInserido);
@@ -107,7 +113,7 @@ public class GerarOrcamentoAjax extends HttpServlet {
                 new OrcamentoDAO().alterar(orc);
 
                 retorno = "O orçamento foi criado!";
-
+                }
             } catch (ClassNotFoundException | SQLException e) {
                 retorno = "Erro ao cadastrar";
 

@@ -8,6 +8,7 @@ package br.com.artenativa.ajax;
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
+import br.com.artenativa.dao.UsuarioDAO;
 import br.com.artenativa.model.Cliente;
 import br.com.artenativa.model.ItemOrcamento;
 import br.com.artenativa.model.Orcamento;
@@ -33,6 +34,11 @@ public class AlterarOrcamentoAjax extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
+        HttpSession sessao = request.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        UsuarioDAO udao = new UsuarioDAO();
+        if (udao.confirmar(usuario)) { //caso sessão ok 
+        
 
         response.setContentType("text/html;charset=UTF-8");
         //mensagem de erro é setada em null e alterada caso ocorra algum erro
@@ -60,12 +66,11 @@ public class AlterarOrcamentoAjax extends HttpServlet {
             erro = "Número do cliente não foi encontrado";
         }
         if (erro == null) {
-            HttpSession sessao = request.getSession();//get responsavel
-            Usuario responsavel = (Usuario) sessao.getAttribute("usuario");
+            
             Orcamento orc = new OrcamentoDAO().buscar(new Orcamento(idOrcamento));
             orc.setId(idOrcamento);
             orc.setCliente(cli);
-            orc.setResponsavel(responsavel);
+            orc.setResponsavel(usuario);
             orc.setDataInicio(dataInicio);
             orc.setDataPrevista(dataPrevista);
             orc.setRelatorio(descricao);
@@ -126,6 +131,7 @@ public class AlterarOrcamentoAjax extends HttpServlet {
             retorno = erro;
         }
         response.getWriter().write(retorno);
+        }
     }
 
     @Override

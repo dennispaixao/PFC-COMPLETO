@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.model.Cliente;
 import br.com.artenativa.util.ParseJson;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,17 +34,21 @@ public class BuscarClienteAjax extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
               response.setContentType("text/html;charset=UTF-8");
               
               int idCli = Integer.parseInt(request.getParameter("cliente")); 
               Cliente cli = new Cliente(idCli);
               String retorno = "não|encontrado";
+              HttpSession sessao = request.getSession();
               try{
+              if (AcessoAdministrativo.validaSessao(sessao)) { 
+           
                    cli = new ClienteDAO().buscar(cli);
                    if(cli.getNome()!= null){
                    retorno = cli.getNome()+"|"+cli.getSobrenome();
                    }
+              }
               }catch(ClassNotFoundException | SQLException e){
               
               

@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="br.com.artenativa.dao.UsuarioDAO"%>
 <%@page import="br.com.artenativa.model.Usuario"%>
 <link href="src/css/menu.css" type="text/css" rel="stylesheet">
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,8 +18,11 @@
 <%try {
         HttpSession sessao = request.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        if (usuario.getNome() != null) {
+        UsuarioDAO udao = new UsuarioDAO();
+        if (udao.confirmar(usuario)) {
             sessao.setMaxInactiveInterval(1000000);
+            
+            
 %>
 
 
@@ -83,8 +87,9 @@
 
 <p id="saudacao">
     <%=usuario.getNivel()%><br>
-    <%=usuario.getId()%>:
-    <%=usuario.getNome()%> <br>
+    <%=usuario.getId()%>
+    <%=usuario.getNome()%>
+    <br>
 </p>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/web/cliente.jsp</file>
-            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/model/Endereco.java</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/web/fornecedorEditar.jsp</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/web/fornecedor.jsp</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/control/SalvarFornecedorAction.java</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/control/CadastrarFornecedorAction.java</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/control/AlterarFornecedorAction.java</file>
             <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/control/CadastrarClienteAction.java</file>
+            <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/dao/FornecedorDAO.java</file>
             <file>file:/C:/Users/ArteNativa/Desktop/PFC/PFC-master/src/java/br/com/artenativa/dao/ClienteDAO.java</file>
         </group>
     </open-files>

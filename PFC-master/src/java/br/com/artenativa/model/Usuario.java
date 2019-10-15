@@ -12,6 +12,7 @@ public class Usuario {
     private int id;  
     private String nome;
     private String senha;
+    private String codigoAcesso;
     private PerfilDeAcesso  nivel;
 
     public Usuario(String nome, String senha, PerfilDeAcesso nivel) {
@@ -27,6 +28,7 @@ public class Usuario {
      public Usuario(int id) {
         this.id = id;
     }
+     
     public int getId() {
         return id;
     }
@@ -61,6 +63,14 @@ public class Usuario {
 
     public void setNivel(PerfilDeAcesso nivel) {
         this.nivel = nivel;
+    }
+
+    public String getCodigoAcesso() {
+        return codigoAcesso;
+    }
+
+    public void setCodigoAcesso(String codigoAcesso) {
+        this.codigoAcesso = codigoAcesso;
     }
 
 

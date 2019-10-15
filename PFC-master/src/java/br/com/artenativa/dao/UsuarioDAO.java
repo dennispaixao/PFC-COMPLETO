@@ -69,6 +69,7 @@ public class UsuarioDAO implements UsuarioDAOInterface{
                 u.setId(rs.getInt("id"));
                 u.setNome(rs.getString("nome"));
                 u.setNivel(PerfilDeAcesso.valueOf(rs.getString("nivel")));
+                u.setSenha(rs.getString("senha"));
                
             }
             return u;
@@ -93,6 +94,7 @@ public class UsuarioDAO implements UsuarioDAOInterface{
                 u.setId(rs.getInt("id"));
                 u.setNome(rs.getString("nome"));
                 u.setNivel(PerfilDeAcesso.valueOf(rs.getString("nivel")));
+                u.setCodigoAcesso(rs.getString("senha").substring(16));
                 return u;
             }else{
             return null;    
@@ -101,6 +103,32 @@ public class UsuarioDAO implements UsuarioDAOInterface{
         }catch(SQLException e){
             return null;
         }
+    }
+    
+    
+    
+     @Override
+    public Boolean confirmar(Usuario u) {
+        if (u.getCodigoAcesso().length()>=15){ //retorna true se ao menos 15 digitos serem iguais ao hash da senha
+            final String CONFIRMAR = "select * from usuario where senha like ? and id = ?";
+                try{   
+                PreparedStatement pstmt = connection.prepareStatement(CONFIRMAR);
+                pstmt.setString(1,'%'+ u.getCodigoAcesso()+'%');
+                pstmt.setInt(2, u.getId());
+                //executa
+                ResultSet rs = pstmt.executeQuery();          
+                if(rs.next()){ 
+                    return true;
+                }else{
+                    return false;  
+                }
+
+            }catch(SQLException e){
+                return null;
+            }
+        }  else{
+            return false;     
+        }  
     }
     
 }

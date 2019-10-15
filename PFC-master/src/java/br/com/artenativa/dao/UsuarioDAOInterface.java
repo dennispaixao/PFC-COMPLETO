@@ -20,7 +20,8 @@ public interface UsuarioDAOInterface {
     public boolean excluir(Usuario u);
     public  ArrayList<Usuario> listar();
     public Usuario buscar(Usuario u);
-    public Usuario autenticar(Usuario u);//retorno sem senha
+    public Usuario autenticar(Usuario u);//autentica o usuario para inicar a sessão
+    public Boolean confirmar(Usuario u); //confirma o hash da sessão com o do banco de dados
     
     
 }

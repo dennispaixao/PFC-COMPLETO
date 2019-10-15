@@ -5,6 +5,7 @@
  */
 
 package br.com.artenativa.ajax;
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.ItemOrcamento;
@@ -21,11 +22,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class RecuperarItensOrcamentoAjax extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, SQLException, ClassNotFoundException {
+           HttpSession sessao = request.getSession();
+            if (AcessoAdministrativo.validaSessao(sessao)) { 
              response.setContentType("text/html;charset=UTF-8");
  
              ArrayList<ItemOrcamento> itens;
@@ -50,6 +54,7 @@ public class RecuperarItensOrcamentoAjax extends HttpServlet {
 
              
              response.getWriter().write(new ParseJson().parseJson((ArrayList)itensMock));
+        }
     }
     
     @Override

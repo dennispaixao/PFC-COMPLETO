@@ -3,6 +3,7 @@ import br.com.artenativa.dao.FuncionarioDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
+import br.com.artenativa.dao.UsuarioDAO;
 import br.com.artenativa.model.Cliente;
 import br.com.artenativa.model.Funcionario;
 import br.com.artenativa.model.ItemOrcamento;
@@ -125,7 +126,7 @@ public class teste {
         
         
           //  nome, sobrenome, sexo, datacadastro, situacao, rg,cpf, email, telefone, celular
-        
+   /*     
         
         
         Funcionario f = new Funcionario();
@@ -136,8 +137,15 @@ public class teste {
         FuncionarioDAO fdao = new FuncionarioDAO();
         fdao.inserir(f);
         
- 
+ /*
+          
+        */
         
+        Usuario u = new Usuario();
+        u.setId(2);
+        u.setCodigoAcesso("964b07152d234b70");
+        UsuarioDAO udao = new UsuarioDAO();
+        System.out.println(udao.confirmar(u));
         
         
         

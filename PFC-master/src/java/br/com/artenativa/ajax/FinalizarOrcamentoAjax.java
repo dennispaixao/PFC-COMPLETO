@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.Orcamento;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Dennis
@@ -26,15 +28,18 @@ public class FinalizarOrcamentoAjax extends HttpServlet {
               response.setContentType("text/html;charset=UTF-8");
               int idOrc = Integer.parseInt(request.getParameter("idOrc"));
               String msg= "para finalizar o orçamento é preciso quitar o débito";
-              try{
-                  Orcamento o = new Orcamento(idOrc);
-                  OrcamentoDAO odao = new OrcamentoDAO();
-                  o = odao.buscar(o);           
-                  if(o.getTotalPago() >= o.getValor()){
-                      o.setEstado(4);
-                      odao.alterar(o);
-                      msg= "ok";
-                  }
+              HttpSession sessao = request.getSession();
+              try{  
+                    if (AcessoAdministrativo.validaSessao(sessao)) { 
+                        Orcamento o = new Orcamento(idOrc);
+                        OrcamentoDAO odao = new OrcamentoDAO();
+                        o = odao.buscar(o);           
+                        if(o.getTotalPago() >= o.getValor()){
+                            o.setEstado(4);
+                            odao.alterar(o);
+                            msg= "ok";
+                        }
+                    }
               }catch(ClassNotFoundException | SQLException e){}
               response.getWriter().write(msg);
    

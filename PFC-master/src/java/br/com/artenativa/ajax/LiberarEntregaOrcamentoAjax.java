@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.artenativa.ajax;
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.ItemOrcamento;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,19 +33,20 @@ public class LiberarEntregaOrcamentoAjax extends HttpServlet {
               Orcamento o = new Orcamento(idOrc); 
               String a = "";
         try {
-            
-            OrcamentoDAO odao= new OrcamentoDAO();
-            o = odao.buscar(o);
-            o.setEstado(3);
-            odao.alterar(o); 
-            ItemOrcamentoDAO idao = new ItemOrcamentoDAO();
-            ArrayList<ItemOrcamento> itens = idao.listar(o);
-            for(ItemOrcamento i : itens){
-               i.setStatus(3);
-               idao.alterarItem(i);
-               a += i.getStatus();
+            HttpSession sessao = request.getSession();
+            if (AcessoAdministrativo.validaSessao(sessao)) { 
+                    OrcamentoDAO odao= new OrcamentoDAO();
+                    o = odao.buscar(o);
+                    o.setEstado(3);
+                    odao.alterar(o); 
+                    ItemOrcamentoDAO idao = new ItemOrcamentoDAO();
+                    ArrayList<ItemOrcamento> itens = idao.listar(o);
+                    for(ItemOrcamento i : itens){
+                       i.setStatus(3);
+                       idao.alterarItem(i);
+                       a += i.getStatus();
+                    }
             }
-            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(LiberarEntregaOrcamentoAjax.class.getName()).log(Level.SEVERE, null, ex);
         }

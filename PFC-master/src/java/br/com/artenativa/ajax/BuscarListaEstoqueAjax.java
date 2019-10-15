@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ClienteDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
@@ -22,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,14 +47,16 @@ public class BuscarListaEstoqueAjax extends HttpServlet {
               String busca = "";
               busca = request.getParameter("busca"); 
               String retorno; 
-              
-              try{  
+               HttpSession sessao = request.getSession();
+              try{            
+                if (AcessoAdministrativo.validaSessao(sessao)) { 
                   
                    ProdutoDAO pdao = new ProdutoDAO();
                    ArrayList<Produto> produtos = pdao.listar(busca);
                    ParseJson pj = new ParseJson();
                    retorno = pj.parseJson((ArrayList) produtos);
                    response.getWriter().write(retorno); 
+                }
                    
               }catch(IOException | ClassNotFoundException | SQLException e){
                         response.getWriter().write("Nenhum produto encontrado");

@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.ajax;
 
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.Orcamento;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,15 +37,18 @@ public class ExcluirOrcamentoAjax extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("situacao"));
         String retorno;
         retorno = "";
+        HttpSession sessao = request.getSession();
         try {
-            Orcamento o = new Orcamento(id);
-            OrcamentoDAO odao = new OrcamentoDAO();
-            if (odao.excluir(o)) {
-                retorno = "removido com sucesso";
+                if (AcessoAdministrativo.validaSessao(sessao)) { 
+                    Orcamento o = new Orcamento(id);
+                    OrcamentoDAO odao = new OrcamentoDAO();
+                    if (odao.excluir(o)) {
+                        retorno = "removido com sucesso";
 
-            } else {
-                retorno = "erro ao excluir";
-            }
+                    } else {
+                        retorno = "erro ao excluir";
+                    }
+                }
         } catch (ClassNotFoundException | SQLException e) {
             retorno = "erro: " + e.getMessage();
         }

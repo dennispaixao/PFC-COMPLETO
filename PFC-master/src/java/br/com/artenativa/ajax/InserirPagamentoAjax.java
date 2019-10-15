@@ -5,6 +5,7 @@
  */
 
 package br.com.artenativa.ajax;
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.ItemOrcamento;
 import br.com.artenativa.model.Orcamento;
@@ -20,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class InserirPagamentoAjax extends HttpServlet {
     
@@ -28,30 +30,33 @@ public class InserirPagamentoAjax extends HttpServlet {
              response.setContentType("text/html;charset=UTF-8");
              int idOrc = Integer.parseInt(request.getParameter("id")); //id do orçamento recebido como param
              double valor;
-             try{
-              valor= Double.parseDouble(request.getParameter("valor")); //quantia paga do orçamento recebido como param
-             }catch(NumberFormatException e){
-              valor = 0;    
+             HttpSession sessao = request.getSession();
+             if (AcessoAdministrativo.validaSessao(sessao)) { 
+                    try{
+                     valor= Double.parseDouble(request.getParameter("valor")); //quantia paga do orçamento recebido como param
+                    }catch(NumberFormatException e){
+                     valor = 0;    
+                    }
+
+                    //se valor + qtPaga > Total então qtPaga = Total;senão :  qtPaga = qtPaga + valo
+                    OrcamentoDAO odao = new OrcamentoDAO();
+                    Orcamento o = odao.buscar(new Orcamento(idOrc));
+
+                    double troco = 0;
+                    if(valor + o.getTotalPago() > o.getValor()){
+                        troco = (valor + o.getTotalPago()) - o.getValor();
+
+                        o.setTotalPago(o.getValor());
+
+                    }else{
+                        o.setTotalPago(o.getTotalPago()+valor);
+                    }
+
+                    odao.alterar(o);
+                    o = odao.buscar(o);
+
+                    response.getWriter().write(o.getTotalPago() +";"+ troco);
              }
-             
-             //se valor + qtPaga > Total então qtPaga = Total;senão :  qtPaga = qtPaga + valo
-             OrcamentoDAO odao = new OrcamentoDAO();
-             Orcamento o = odao.buscar(new Orcamento(idOrc));
-
-             double troco = 0;
-             if(valor + o.getTotalPago() > o.getValor()){
-                 troco = (valor + o.getTotalPago()) - o.getValor();
-                 
-                 o.setTotalPago(o.getValor());
-
-             }else{
-                 o.setTotalPago(o.getTotalPago()+valor);
-             }
-
-             odao.alterar(o);
-             o = odao.buscar(o);
-             
-             response.getWriter().write(o.getTotalPago() +";"+ troco);
     }
     
     @Override

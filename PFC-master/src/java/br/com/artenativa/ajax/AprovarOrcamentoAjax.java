@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.artenativa.ajax;
+import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
@@ -19,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,10 +31,14 @@ public class AprovarOrcamentoAjax extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession sessao = request.getSession();
+        try {
+        if (AcessoAdministrativo.validaSessao(sessao)) { 
               String id = request.getParameter("id");
               int idOrc = Integer.parseInt(id);
               Orcamento o = new Orcamento(idOrc);       
-        try {
+      
             OrcamentoDAO odao= new OrcamentoDAO();
             o = odao.buscar(o);
             o.setEstado(2);
@@ -48,15 +54,10 @@ public class AprovarOrcamentoAjax extends HttpServlet {
                 p.setQtEstoque(p.getQtEstoque() - i.getQuantidade());
                 pdao.alterar(p);
             }
-            
-            
+             response.getWriter().write(idOrc + "");     
+        }   
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AprovarOrcamentoAjax.class.getName()).log(Level.SEVERE, null, ex);
-        }
-              
-
-              response.getWriter().write(idOrc + "");     
-              
+        }  
     }
-
 }
