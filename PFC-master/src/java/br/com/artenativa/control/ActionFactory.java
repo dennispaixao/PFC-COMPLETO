@@ -38,6 +38,7 @@ public class ActionFactory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         try {
+            request.setCharacterEncoding("UTF-8");
             //recupera a acao do usuário
             String acao = request.getParameter("acao");
             //remove espacos em branco do nome da acao para montar o nome da Classe
@@ -50,9 +51,6 @@ public class ActionFactory extends HttpServlet {
             ICommand commandAction = (ICommand) classeAction.newInstance();
             //executar action
             commandAction.executar(request, response);
-            
-           
-
 
             RequestDispatcher rd = request.getRequestDispatcher((String) request.getAttribute("pageRedirect"));
             rd.forward(request, response);

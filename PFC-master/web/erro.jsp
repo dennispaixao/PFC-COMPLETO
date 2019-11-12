@@ -13,7 +13,7 @@
     </head>
     <body>
         <%@include file="/menu.jsp" %>  
-        Erro
+        <h1> Erro </h1>
         <p><%= request.getAttribute("erro")%> </p>
             
     </body>

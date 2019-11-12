@@ -4,7 +4,7 @@
     Author     : Dennis
 --%>
 
-
+<%@ page  contentType="text/html"  pageEncoding="UTF-8"%>
 <%@page import="br.com.artenativa.dao.UsuarioDAO"%>
 <%@page import="br.com.artenativa.model.Usuario"%>
 <link href="src/css/menu.css" type="text/css" rel="stylesheet">
@@ -25,38 +25,42 @@
             
 %>
 
-
-
- <div class="container" style="position: absolute; z-index: 899999999">
+ <div class="container" style="position: absolute; z-index: 899999999;">
 			<ul id="gn-menu" class="gn-menu-main">
 				<li class="gn-trigger">
 					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
 					<nav class="gn-menu-wrapper">
 						<div class="gn-scroller">
-							<ul class="gn-menu">
+							<ul class="gn-menu" style="padding-left: 30px">
 								
 								<li>
-									<a class="gn-icon gn-icon-download" style="background: #ccc" >Cadastrar</a>
-									<ul class="gn-submenu ">
-                                                                            <li><a class="gn-icon gn-icon-illustrator" href="cliente.jsp" style="background: #fff">Cliente</a></li>
-										<li><a class="gn-icon gn-icon-photoshop" href="funcionario.jsp" style="background: #fff">Funcionario</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="fornecedor.jsp" style="background: #fff">Fornecedor</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="produto.jsp" style="background: #fff">Produto</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamento.jsp" style="background: #fff">OrÁamento</a></li>
+									<a  style="background: #ccc" >Cadastrar</a>
+									<ul class="gn-submenu " >
+                                                                            <li><a  href="cliente.jsp" style="background: #fff">Cliente</a></li>
+										<li><a href="funcionario.jsp" style="background: #fff">Funcionario</a></li>
+                                                                                <li><a href="fornecedor.jsp" style="background: #fff">Fornecedor</a></li>
+                                                                                <li><a href="produto.jsp" style="background: #fff">Produto</a></li>
+                                                                                <li><a href="orcamento.jsp" style="background: #fff">Or√ßamento</a></li>
+                                                                                <li><a  href="ControllerFactory?acao=Material" style="background: #fff">Material</a></li>
+                                                                                <li><a href="orcamento.jsp" style="background: #fff">Or√ßamento</a></li>
+                                                                           
+                                                                                
 									</ul>
 								</li>
                                                                 <li>
-									<a class="gn-icon gn-icon-download" style="background: #ccc" >Listar</a>
+									<a  style="background: #ccc" >Listar</a>
 									<ul class="gn-submenu ">
-										<li><a class="gn-icon gn-icon-illustrator" href="ControllerFactory?acao=ListarCliente" style="background: #fff">Clientes</a></li>
-										<li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFuncionario" style="background: #fff">Funcionarios</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarFornecedor" style="background: #fff">Fornecedors</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="ControllerFactory?acao=ListarProduto" style="background: #fff">Produtos</a></li>
-                                                                                <li><a class="gn-icon gn-icon-photoshop" href="orcamentoListar.jsp" style="background: #fff">OrÁamentos</a></li>
+										<li><a  href="ControllerFactory?acao=ListarCliente" style="background: #fff">Clientes</a></li>
+										<li><a href="ControllerFactory?acao=ListarFuncionario" style="background: #fff">Funcionarios</a></li>
+                                                                                <li><a href="ControllerFactory?acao=ListarFornecedor" style="background: #fff">Fornecedors</a></li>
+                                                                                <li><a href="ControllerFactory?acao=ListarProduto" style="background: #fff">Produtos</a></li>
+                                                                                <li><a href="ControllerFactory?acao=ListarMaterial" style="background: #fff">Materiais</a></li>
+                                                                                <li><a href="orcamentoListar.jsp" style="background: #fff">Or√ßamentos</a></li>
 									</ul>
-                                                                        <a class="gn-icon gn-icon-download" style="background: #ccc" >Relatorios</a>
+                                                                        <a  style="background: #ccc" >Estoque</a>
 									<ul class="gn-submenu ">
-										<li><a class="gn-icon gn-icon-illustrator" href="estoque.jsp" style="background: #fff">Estoque</a></li>
+										<li><a  href="estoqueMateriais.jsp" style="background: #fff">Materias Primas</a></li>
+                                                                                <li><a  href="estoque.jsp" style="background: #fff">Produtos</a></li>
 										
 									</ul>
 								</li>
@@ -97,12 +101,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <%} else {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-            request.setAttribute("msg", "N„o foi possÌvel autenticar o usu·rio");
+            request.setAttribute("msg", "N√£o foi poss√≠vel autenticar o usu√°rio");
             rd.forward(request, response);
         }
     } catch (Exception e) {
         RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-        request.setAttribute("msg", "N„o foi possÌvel autenticar o usu·rio");
+        request.setAttribute("msg", "N√£o foi poss√≠vel autenticar o usu√°rio");
         rd.forward(request, response);
             }%>            
 

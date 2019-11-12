@@ -27,7 +27,6 @@ public class AlterarFornecedorAction implements ICommand{
        try {
           
        FornecedorDAO cdao = new FornecedorDAO();
-
        request.setAttribute("fornecedor", cdao.buscar(p));
 
         } catch (SQLException | ClassNotFoundException ex) {

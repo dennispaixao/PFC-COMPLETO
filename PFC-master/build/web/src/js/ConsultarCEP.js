@@ -6,6 +6,7 @@ fetch("https://viacep.com.br/ws/"+e.target.value+"/json/")
     return response.json()
   })
   .then(data => {
+   console.log(data);
    document.querySelector("#rua").value = data.logradouro; 
    document.querySelector("#bairro").value = data.bairro;
    document.querySelector("#cidade").value = data.localidade;

@@ -152,6 +152,7 @@
             <div id="mensagem">
                 <% if (request.getAttribute("msg") != null) {%>
                 <h2><%=request.getAttribute("msg")%> </h2>
+                
                 <% }%>
             </div>
         

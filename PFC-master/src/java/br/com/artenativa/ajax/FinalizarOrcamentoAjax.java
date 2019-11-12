@@ -8,6 +8,7 @@ package br.com.artenativa.ajax;
 import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.Orcamento;
+import br.com.artenativa.util.ParseDates;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ public class FinalizarOrcamentoAjax extends HttpServlet {
                         o = odao.buscar(o);           
                         if(o.getTotalPago() >= o.getValor()){
                             o.setEstado(4);
+                            o.setDataFim(ParseDates.getNowUnix().toString());
                             odao.alterar(o);
                             msg= "ok";
                         }

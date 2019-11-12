@@ -51,7 +51,8 @@ public class AprovarOrcamentoAjax extends HttpServlet {
                 ProdutoDAO pdao = new ProdutoDAO();
                 Produto p = new Produto(i.getProduto().getId());
                 p = pdao.buscar(p);
-                p.setQtEstoque(p.getQtEstoque() - i.getQuantidade());
+                Float qtEstoque = p.getQtEstoque()-i.getQuantidade();
+                p.setQtEstoque(qtEstoque);
                 pdao.alterar(p);
             }
              response.getWriter().write(idOrc + "");     

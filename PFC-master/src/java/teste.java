@@ -1,12 +1,15 @@
 
 import br.com.artenativa.dao.FuncionarioDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
+import br.com.artenativa.dao.MaterialDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
 import br.com.artenativa.dao.UsuarioDAO;
 import br.com.artenativa.model.Cliente;
+import br.com.artenativa.model.Fornecedor;
 import br.com.artenativa.model.Funcionario;
 import br.com.artenativa.model.ItemOrcamento;
+import br.com.artenativa.model.Material;
 import br.com.artenativa.model.Orcamento;
 import br.com.artenativa.model.Produto;
 import br.com.artenativa.model.Usuario;
@@ -139,17 +142,24 @@ public class teste {
         
  /*
           
-        */
+       
         
         Usuario u = new Usuario();
         u.setId(2);
         u.setCodigoAcesso("964b07152d234b70");
         UsuarioDAO udao = new UsuarioDAO();
         System.out.println(udao.confirmar(u));
+         */
         
-        
-        
-        
+         
     
+     //   System.out.println("(11)25-5212".matches("^[0-9-()]+"));
+        
+    MaterialDAO mdao = new MaterialDAO();
+    Material m = new Material();
+    m.setNome("material");
+    m.setFornecedor(new Fornecedor(6));
+    
+    mdao.inserir(m);
     
 }}

@@ -270,18 +270,11 @@ public class ProdutoDAO implements ProdutoDAOInterface {
                     //add na lista
                     produtos.add(p);
                 }
+               connection.close();
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return produtos;
         
         

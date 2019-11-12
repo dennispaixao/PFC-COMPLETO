@@ -76,7 +76,7 @@
                     <div class="form-group row">
                          <label for="dataprevista" class="col-md-3 col-form-label">Inserir Item:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control"  id="q" >
+                                <input type="text" class="form-control"  id="q" autocomplete="off">
                                 <div id="itens">
                                     <table id="table" class="table table-dark" border="1" >  
                                         <tbody id="tbody">

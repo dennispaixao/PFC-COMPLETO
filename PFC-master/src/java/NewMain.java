@@ -1,9 +1,12 @@
 
 import br.com.artenativa.dao.ItemOrcamentoDAO;
+import br.com.artenativa.dao.MaterialDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.model.ItemOrcamento;
+import br.com.artenativa.model.Material;
 import br.com.artenativa.model.Orcamento;
 import br.com.artenativa.model.mock.ItemOrcamentoMock;
+import br.com.artenativa.util.ParseDates;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -43,7 +46,7 @@ public class NewMain {
     /*
    Orcamento o = new Orcamento(50);
    OrcamentoDAO odao = new OrcamentoDAO();
-   System.out.println(odao.excluir(o));*/
+   System.out.println(odao.excluir(o));
     
     
             ArrayList<ItemOrcamento> itens;
@@ -56,9 +59,10 @@ public class NewMain {
                 System.out.println(i.getProduto().getNome());
                 System.out.println(i.getQuantidade());
 
-            });
+            });*/
             
+        System.out.println(ParseDates.getNowUnix().toString());
             
-            
+        System.out.println(new MaterialDAO().buscar(new Material(18)).getNome());
 }
 }

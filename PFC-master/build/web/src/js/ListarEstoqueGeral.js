@@ -11,7 +11,6 @@ const listar = (busca) => {
     xhr.onload = function () {
         let tbody = document.querySelector("#tbodyOrcamentos");
         tbody.textContent = "";
-        tbody.style.fontSize = "18px";
         //se tudo ocorrer bem como proceder
         if (xhr.status === 200) {
 
