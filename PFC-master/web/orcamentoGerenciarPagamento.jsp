@@ -24,7 +24,7 @@
 
         <div class="container">
             <div class="row" >
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6" id="infoOrc">
                     
                     <div style="float:left; width:400px; text-align: left;">
                         <a href="orcamentoListar.jsp" style="margin-right: 20px; font-size:18px; font-weight: bold; color:yellowgreen"  > voltar </a>
@@ -36,14 +36,14 @@
                 </div>
                 <div class="col-12 col-md-6">
                     
-                    <form action="ControllerFactory" method="POST">
+                    <form action="ControllerFactory" method="POST"  id="pag">
 
                         <div class="card" style="margin:10px">
                             <div class="card-header text-dark" >
                                 <input type="hidden" id="idOrc" value="<%= orc.getId()%>" readonly ><br>
                                 <h2>Pagamento</h2>
                             </div>
-                            <div class="card-body text-dark">
+                            <div class="card-body text-dark" >
                                 <div class="row">
                                         <div class="col-xl-5">
                                             <div class="form-group row">
@@ -85,7 +85,6 @@
                                         <div class="row">
                                             <div class="col-8 offset-4">
                                                      
-                                                    
                                                     <div class="form-group row">
                                                     <label for="nome" class="col-xl-5 col-form-label">Troco:</label>
                                                     <div class="col-xl-7">
@@ -116,8 +115,16 @@
                 </div>
             </div>
 
-
+             <script>
+                 //caso seja aberto na modal retira alguns elementos da pagina como menu 
+                 var url   = window.location.search.replace("?", "");
+                    var items = url.split("&");
+                    if(items[2]){ 
+                       document.querySelector("#infoOrc").style.display="none";
+                       document.querySelector("#pag").style.marginTop="-100px";
+                       document.querySelector("#menu-hide").style.display="none";
+                    }
+             </script>
             <script src="src/js/GerenciarPagamentoOrcamento.js"></script> 
-            <script src="src/js/AprovarOrcamento.js"></script> 
     </body>
 </html>

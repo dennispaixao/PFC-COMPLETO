@@ -25,7 +25,9 @@
         <div class="container">
             <% List<ItemOrcamento> itens = (ArrayList<ItemOrcamento>) request.getAttribute("itens"); %>
             <% Orcamento o = (Orcamento) request.getAttribute("orcamento");%>
+             <a href="orcamentoListar.jsp" style="margin-right: 20px; font-size:18px; font-weight: bold; color:yellowgreen"  > voltar </a><hr>
             <div class="row">
+                
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6">

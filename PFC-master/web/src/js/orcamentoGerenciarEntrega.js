@@ -65,7 +65,7 @@ btn_fimOrc.addEventListener("click",()=>{
                     window.location.href = "orcamentoListar.jsp";
                 }else{
                     alert(xhr.responseText);
-                    window.location.href = "ControllerFactory?acao=GerenciarPagamento&id="+idOrc;
+                    $('#myModal').modal('show'); 
                 }
                  
             } else {

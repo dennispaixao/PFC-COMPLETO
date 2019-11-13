@@ -91,7 +91,31 @@
            <input type="button" id="FinalizarOrcamento" value="Finalizar Orcamento">
            </div>
         </div>   
-    </div>       
+    </div> 
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <iframe style="width:100%; height: 500px" src="ControllerFactory?acao=GerenciarPagamento&id=<%=o.getId()%>&modal#pag">
+
+        </iframe>   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+                            
     <script src="src/js/orcamentoGerenciarEntrega.js"> </script>    
     </body>
 </html>
