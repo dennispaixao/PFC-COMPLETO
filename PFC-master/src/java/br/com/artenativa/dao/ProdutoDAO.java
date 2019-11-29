@@ -48,42 +48,31 @@ public class ProdutoDAO implements ProdutoDAOInterface {
           
     
     @Override
-    public boolean inserir(Produto p) {
-      
-        final String INSERT = "insert into produto (nome, descricao, preco , datacadastro, situacao,"
-                + " peso , largura, altura, espessura)"
-                + " values (?,?,?,?,1, ?,?,?,?);";
-
-        try {
-            connection = ConnectionFactory.getConexao();
-            PreparedStatement ps = connection.prepareCall(INSERT);
-            ps.setString(1, p.getNome());
-            ps.setString(2, p.getDescricao());
-            ps.setDouble(3, p.getPreco());
-            ps.setString(4, p.getDataCadastro());
-            ps.setDouble(5, p.getPeso());
-            ps.setDouble(6, p.getLargura());
-            ps.setDouble(7, p.getAltura());
-            ps.setDouble(8, p.getEspessura());
-         
-            
-            //execute Update retorna um inteiro diferente do executeQuery que retorna um resultSet(dados da consulta)
-            ps.executeUpdate();
-            ps.close();
-            connection.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+    public int inserir(Produto p) {
             try {
-                connection.close();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                final String INSERT = "insert into produto (nome, descricao, preco , datacadastro, situacao,"
+                        + " peso , largura, altura, espessura)"
+                        + " values (?,?,?,?,1, ?,?,?,?) returning id;";
+                
+                connection = ConnectionFactory.getConexao();
+                PreparedStatement ps = connection.prepareCall(INSERT);
+                    
+                    ps.setString(1, p.getNome());
+                    ps.setString(2, p.getDescricao());
+                    ps.setDouble(3, p.getPreco());
+                    ps.setString(4, p.getDataCadastro());
+                    ps.setDouble(5, p.getPeso());
+                    ps.setDouble(6, p.getLargura());
+                    ps.setDouble(7, p.getAltura());
+                    ps.setDouble(8, p.getEspessura());
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    connection.close();
+                    return rs.getInt("id");
+            } catch (SQLException | ClassNotFoundException e) {
+                return 0;
         }
-        return true;
-        
+
     }
 
     @Override

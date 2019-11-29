@@ -201,6 +201,28 @@
         <url-pattern>/BuscarClienteAjax</url-pattern>
     </servlet-mapping> 
        
+       
+     <servlet>
+        <servlet-name>BuscarMateriaisAjax</servlet-name>
+        <servlet-class>br.com.artenativa.ajax.BuscarMateriaisAjax</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>BuscarMateriaisAjax</servlet-name>
+        <url-pattern>/BuscarMateriaisAjax</url-pattern>
+    </servlet-mapping>    
+    
+       
+     <servlet>
+        <servlet-name>CadastrarProdutoAjax</servlet-name>
+        <servlet-class>br.com.artenativa.ajax.CadastrarProdutoAjax</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>CadastrarProdutoAjax</servlet-name>
+        <url-pattern>/CadastrarProdutoAjax</url-pattern>
+    </servlet-mapping>  
+       
                  
         <session-config>
             <session-timeout>

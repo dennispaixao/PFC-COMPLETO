@@ -25,6 +25,7 @@
   
             <form action="ControllerFactory" method="post">
                 <div class="row row-content">
+   
                     <div class="col-12">
                         <h1> Produto </h1>
                     </div>
@@ -32,7 +33,7 @@
                         <div class="form-group row">
                             <label for="nome" class="col-md-2 col-form-label">Nome:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="nome"
+                                <input type="text" class="form-control"  name="nome" id="nome"
                                        placeholder="Nome">
                             </div>
                         </div>
@@ -40,7 +41,7 @@
                         <div class="form-group row">
                             <label for="feedback" class="col-md-2 col-form-label">Descricao</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" name="descricao"  name="feedback" rows="12"></textarea>
+                                <textarea class="form-control" name="descricao" id="descricao"  rows="12"></textarea>
                             </div>
                     </div>
                         
@@ -75,7 +76,7 @@
                          <div class="form-group row">
                             <label for="Altura" class="col-md-2 col-form-label">Altura:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="altura" id="peso" 
+                                <input type="text" class="form-control" name="altura" id="altura" 
                                        placeholder="altura">
                             </div>  
                         </div>
@@ -83,18 +84,48 @@
                          <div class="form-group row">
                             <label for="Espessura" class="col-md-2 col-form-label">Espessura:</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="espessura" id="peso" 
+                                <input type="text" class="form-control" name="espessura" id="espessura" 
                                        placeholder="espessura">
                             </div>  
                         </div>
+                    </div> 
+                        
+                 </div> 
+                    
+                    <div class="col-12">     
+                         <div class="form-group row">
+                         <label for="dataprevista" class="col-md-2 col-form-label"><b>Inserir material necessário:</b></label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control"  id="q" autocomplete="off">
+                                <div id="itens" style="position:absolute ;height: 350px; width:100%; overflow: scroll;">
+                                    <table id="table" class="table table-dark" border="1" >  
+                                        <tbody id="tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
+                        
+                        <div id="tabela-orcamento" style="margin-top:20px; height: 350px; width:100%; overflow: scroll; background: #333; color:white">
+                           <table  class="table table-dark" border="1"  >  
+                               <thead>
+                               <th>id</th>
+                               <th style="width:40%">nome</th>
+                               <th>fornecedor</th>
+                               <th>qt</th>
+                               <th>opções</th>
+                               </thead>     
+                               <tbody id="itens-orcamento">
+                               </tbody>
+                           </table>
+                       </div>      
+                    </div>
+                        
 <br>
 
                         <div class="form-group row">
                             <div class=" col-md-12" style="text-align: right">
-
-                                <input type="submit" class="btn " style="background:#00b5bd" name="acao" value="Cadastrar Produto">
-                               
+                                 <input type="button" class="btn " style="background:#00b5bd" id="cadastrarProduto" value="Cadastrar Produto">
                             </div>
                         </div>
 
@@ -111,6 +142,7 @@
             </div>
         
             <script src="src/js/ConsultarCEP.js"> </script>   
+            <script src="src/js/CadastrarProduto.js"></script>  
             
        </div>
             

@@ -1,6 +1,7 @@
 
 import br.com.artenativa.dao.FuncionarioDAO;
 import br.com.artenativa.dao.ItemOrcamentoDAO;
+import br.com.artenativa.dao.ItemProdutoDAO;
 import br.com.artenativa.dao.MaterialDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
@@ -9,14 +10,17 @@ import br.com.artenativa.model.Cliente;
 import br.com.artenativa.model.Fornecedor;
 import br.com.artenativa.model.Funcionario;
 import br.com.artenativa.model.ItemOrcamento;
+import br.com.artenativa.model.ItemProduto;
 import br.com.artenativa.model.Material;
 import br.com.artenativa.model.Orcamento;
 import br.com.artenativa.model.Produto;
 import br.com.artenativa.model.Usuario;
+import br.com.artenativa.model.mock.MaterialMock;
 import br.com.artenativa.util.MD5;
 import br.com.artenativa.util.ParseDates;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Calendar.Builder;
 import java.util.Date;
@@ -154,12 +158,49 @@ public class teste {
          
     
      //   System.out.println("(11)25-5212".matches("^[0-9-()]+"));
-        
+    /*    
     MaterialDAO mdao = new MaterialDAO();
     Material m = new Material();
     m.setNome("material");
     m.setFornecedor(new Fornecedor(6));
     
     mdao.inserir(m);
+        
+    ArrayList<Material> mats = new MaterialDAO().listar("a");
+    
+    mats.stream().forEach((m) -> {
+        System.out.println(m.getNome());
+    });
+    
+   String id = "a";
+   MaterialDAO mdao = new MaterialDAO();
+   ArrayList<Material> materiais = mdao.listar(id);
+   ArrayList<MaterialMock> mmock = new ArrayList();
+                  for( Material m: materiais){
+                      MaterialMock mm= new MaterialMock();
+                      mm.setNome(m.getNome());  
+                      mm.setFornecedor(m.getFornecedor().getNome());
+                      mm.setPrecoUnitario(m.getPrecoUnitario());
+                      mmock.add(mm);
+                  }
+                   
+                  for(MaterialMock mm: mmock){
+                      System.out.println(mm.getNome());
+                      System.out.println(mm.getPrecoUnitario());
+                      System.out.println(mm.getFornecedor());
+                  }
+    
+    
+   */
+    ItemProduto i = new ItemProduto();
+    i.setProduto(new Produto(2));
+    i.setQuantidade(3);
+        
+    new ItemProdutoDAO().inserir(i);
+        
+        System.out.println(new ProdutoDAO().inserir(new Produto()));
+    
+    
+    
     
 }}

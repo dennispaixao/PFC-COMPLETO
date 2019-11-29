@@ -193,6 +193,7 @@ public class MaterialDAO implements MaterialDAOInterface {
                     p.setDataCadastro(rs.getString("datacadastro"));
                     p.setQtMin(rs.getFloat("qtmin"));
                     p.setQtEstoque(rs.getFloat("qtestoque"));
+                    p.setFornecedor(new FornecedorDAO().buscar(new Fornecedor(rs.getInt("fornecedor"))));
                 
                     //add na lista
                     materiais.add(p);

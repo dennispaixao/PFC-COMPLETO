@@ -56,7 +56,6 @@
                             <label for="fornecedor" class="col-md-2 col-form-label">Fornecedor:</label>
                             <div class="col-md-8">
                                 <select name="fornecedor" class="form-control">
-                                    <option value="0" selected>sem fornecedor</option>
                                     <% for(Fornecedor p : fornecedores ){ %>   
                                     <option value="<%=p.getId()%>"><%=p.getNome()%></option>
                                 <%

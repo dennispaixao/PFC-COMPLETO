@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public interface ProdutoDAOInterface {
         
     public int selectCurr();
-    public boolean inserir(Produto f);
+    public int inserir(Produto f);
     public boolean alterar(Produto f);
     public boolean excluir(Produto f);
     public  ArrayList<Produto> listar();

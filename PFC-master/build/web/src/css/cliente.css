@@ -135,7 +135,16 @@ form input[type="submit"]:hover,form input[type="button"]:hover {
 
 
 
-
+::-webkit-scrollbar-track {
+    background-color: none;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: none;
+}
+::-webkit-scrollbar-thumb {
+    background: none;
+}
 
 
 

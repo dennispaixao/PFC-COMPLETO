@@ -159,13 +159,8 @@ public class OrcamentoDAO {
             return true;
             
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            try {
-                connection.close();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+           return false;
         }
-        return false;
+      
     }
 }
