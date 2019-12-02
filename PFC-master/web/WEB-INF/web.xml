@@ -221,7 +221,18 @@
     <servlet-mapping>
         <servlet-name>CadastrarProdutoAjax</servlet-name>
         <url-pattern>/CadastrarProdutoAjax</url-pattern>
-    </servlet-mapping>  
+    </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>AlterarProdutoAjax</servlet-name>
+        <servlet-class>br.com.artenativa.ajax.AlterarProdutoAjax</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>AlterarProdutoAjax</servlet-name>
+        <url-pattern>/AlterarProdutoAjax</url-pattern>
+    </servlet-mapping> 
+          
        
                  
         <session-config>

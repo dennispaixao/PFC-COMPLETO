@@ -191,7 +191,7 @@ public class teste {
                   }
     
     
-   */
+ 
     ItemProduto i = new ItemProduto();
     i.setProduto(new Produto(2));
     i.setQuantidade(3);
@@ -199,7 +199,19 @@ public class teste {
     new ItemProdutoDAO().inserir(i);
         
         System.out.println(new ProdutoDAO().inserir(new Produto()));
-    
+      */
+        
+   Produto p = new Produto(23);     
+   ArrayList<ItemProduto> its = new ItemProdutoDAO().listar(p);
+   
+   for(ItemProduto i : its){
+       System.out.println(i.getIdItem());
+       System.out.println(i.getMaterial().getNome());
+       System.out.println(i.getProduto().getNome());
+       System.out.println(i.getQuantidade());
+       System.out.println("<>");
+   }
+        
     
     
     

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dennis
  */
-public class CadastrarProdutoAjax extends HttpServlet {
+public class AlterarProdutoAjax extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
@@ -49,9 +49,10 @@ public class CadastrarProdutoAjax extends HttpServlet {
         double largura = Double.parseDouble(campos[5]);
         double altura = Double.parseDouble(campos[6]);
         double espessura = Double.parseDouble(campos[7]);
+        int id= Integer.parseInt(campos[8]);
         
         if (AcessoAdministrativo.validaSessao(sessao)) {
-            Produto p = new Produto();
+            Produto p = new Produto(id);
             p.setNome(nome);
             p.setDescricao(descricao);
             p.setPreco(preco);
@@ -62,26 +63,26 @@ public class CadastrarProdutoAjax extends HttpServlet {
             try {
 
                 ProdutoDAO pdao = new ProdutoDAO();
-                int idProdInserido = pdao.inserir(p);  
+                pdao.alterar(p); 
+                new ItemProdutoDAO().excluirTodos(p); 
                 if(!its.isEmpty()){
                 String[] itensProd = its.split(";");
+              
                 for (String itensProd1 : itensProd) {
                     String[] item = itensProd1.split(":");
                     int idMaterial = Integer.parseInt(item[0]);
                     Float quantidade = Float.parseFloat(item[1]);
-                    ItemProduto iProd= new ItemProduto();
-                    
-                    iProd.setProduto(new Produto(idProdInserido)); 
+                    ItemProduto iProd= new ItemProduto();  
+                    iProd.setProduto(new Produto(p.getId())); 
                     iProd.setMaterial(new Material(idMaterial));
                     iProd.setQuantidade(quantidade);
                     ItemProdutoDAO idao = new ItemProdutoDAO();
                     idao.inserir(iProd);
-                }
-                }
+                }}
 
-                retorno = "O produto foi cadastrado com sucesso!";
+                retorno = "O produto foi alterado com sucesso!";
             } catch (ClassNotFoundException | SQLException e) {
-                retorno = "Erro ao cadastrar";
+                retorno = "Erro ao alterar";
             }
         } 
 
@@ -95,7 +96,7 @@ public class CadastrarProdutoAjax extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CadastrarProdutoAjax.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlterarProdutoAjax.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

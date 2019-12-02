@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.control;
 
+import br.com.artenativa.dao.ItemProdutoDAO;
 import br.com.artenativa.dao.ProdutoDAO;
 import br.com.artenativa.model.Produto;
 import java.sql.SQLException;
@@ -27,8 +28,10 @@ public class AlterarProdutoAction implements ICommand{
        try {
           
        ProdutoDAO cdao = new ProdutoDAO();
-
+      
        request.setAttribute("produto", cdao.buscar(p));
+       request.setAttribute("materiais", new ItemProdutoDAO().listar(p));
+      
 
         } catch (SQLException | ClassNotFoundException ex){
             request.setAttribute("pageRedirect", "erro.jsp");

@@ -5,6 +5,8 @@
  */
 package br.com.artenativa.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Dennis
@@ -22,7 +24,8 @@ public class Produto {
     private double espessura;
     private float qtEstoque;
     private float estoqueRaz;//quantidade razoavel no estoque
-
+    private ArrayList<ItemProduto> materiais;
+    
     public String getDataCadastro() {
         return dataCadastro;
     }
@@ -125,6 +128,14 @@ public class Produto {
 
     public void setEstoqueRaz(float estoqueRaz) {
         this.estoqueRaz = estoqueRaz;
+    }
+
+    public ArrayList<ItemProduto> getMateriais() {
+        return materiais;
+    }
+
+    public void setMateriais(ArrayList<ItemProduto> materiais) {
+        this.materiais = materiais;
     }
     
     

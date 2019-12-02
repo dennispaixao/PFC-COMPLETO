@@ -39,8 +39,7 @@
                                                                             <li><a  href="cliente.jsp" style="background: #fff">Cliente</a></li>
 										<li><a href="funcionario.jsp" style="background: #fff">Funcionario</a></li>
                                                                                 <li><a href="fornecedor.jsp" style="background: #fff">Fornecedor</a></li>
-                                                                                <li><a href="produto.jsp" style="background: #fff">Produto</a></li>
-                                                                                <li><a href="orcamento.jsp" style="background: #fff">Orçamento</a></li>
+                                                                                <li><a href="produto.jsp" style="background: #fff">Produto</a></li> 
                                                                                 <li><a  href="ControllerFactory?acao=Material" style="background: #fff">Material</a></li>
                                                                                 <li><a href="orcamento.jsp" style="background: #fff">Orçamento</a></li>
                                                                            

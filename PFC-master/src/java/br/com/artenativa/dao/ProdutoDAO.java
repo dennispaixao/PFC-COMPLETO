@@ -5,6 +5,7 @@
  */
 package br.com.artenativa.dao;
 
+import br.com.artenativa.model.Material;
 import br.com.artenativa.model.Produto;
 import br.com.artenativa.util.ConnectionFactory;
 import java.sql.Connection;
@@ -212,28 +213,17 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             p.setEspessura(rs.getDouble("espessura"));
             p.setQtEstoque(rs.getFloat("qtestoque"));
             p.setEstoqueRaz(rs.getFloat("estoqueraz"));
-  
-          //  p.getEndereco().setPais(rs.getString("pais"));
-          //  p.getEndereco().setUF(rs.getString("estado"));
-          //  p.getEndereco().setCidade(rs.getString("cidade"));
-          //  p.getEndereco().setLogradouro(rs.getString("rua"));
-          //  p.getEndereco().setNumero(rs.getString("numero"));
-          //  p.getEndereco().setCep(rs.getString("cep"));    
-         //   p.getEndereco().setComplemento(rs.getString("complemento"));
-      
             
-        }catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-          
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+               
+            
+  
+         connection.close();
+           return p;
+        }catch (SQLException | ClassNotFoundException ex) {   
+           return null;
         }
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       return p;
+      
+      
     }
 
     @Override

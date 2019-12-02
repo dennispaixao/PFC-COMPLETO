@@ -43,6 +43,7 @@
                                 <input type="text" class="form-control" id="cliente"  
                                        placeholder="id">
                             </div>
+                            <input id="btn-clientes" class="btn btn-warning bg-warning" type="button" name="acao" value="clientes">
                         </div>
                         
                           <div class="form-group row">
@@ -70,12 +71,12 @@
                          </div>
                 </div>
                     
-                 <div class="col-12 col-md-7">    
+                 <div class="col-12 ">    
                    
                    
                     <div class="form-group row">
-                         <label for="dataprevista" class="col-md-3 col-form-label">Inserir Item:</label>
-                            <div class="col-md-6">
+                         <label for="dataprevista" class="col-md-2 col-form-label">Inserir Item:</label>
+                            <div class="col-md-3">
                                 <input type="text" class="form-control"  id="q" autocomplete="off">
                                 <div id="itens">
                                     <table id="table" class="table table-dark" border="1" >  
@@ -122,9 +123,35 @@
         
           </div>  
          </div>
+            
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <iframe style="width:100%; height: 500px" src="ControllerFactory?acao=ListarCliente&modal#pag">
+
+        </iframe>   
+      </div>
+     
+    </div>
+  </div>
+</div>     
+            
 
         <script src="src/js/GerarOrcamento.js"></script>  
 
-
+    <script>
+        document.querySelector("#btn-clientes").addEventListener("click",()=>{
+              $('#myModal').modal('show');
+            
+        })
+    </script> 
+    
     </body>      
 </html>
