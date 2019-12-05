@@ -71,12 +71,21 @@ public class SalvarClienteAction implements ICommand {
         char[] CharsSexo = new char[2];
         CharsSexo[0] = 'm';
         CharsSexo[1] = 'f';
-        msg = vl.validaCharset(p.getSexo(), CharsSexo, "Sexo");
-
-        msg = vl.validaString(sobrenome, "Sobrenome", 2, 80, false);
-
+        msg = vl.validaString(numero, "Complemento", 0, 80, true); 
+        msg = vl.validaString(numero, "Numero", 0, 80, true); 
+        msg = vl.validaString(UF, "UF", 0, 2, false); 
+        msg = vl.validaString(cidade, "cidade", 0, 80, false); //0 para null
+        msg = vl.validaString(bairro, "bairro", 0, 80, false); 
+        msg = vl.validaString(rua, "rua", 0, 80, true); 
+        msg = vl.validaCep(cep,true); 
+        msg = vl.validaTelefone(p.getCelular(),"Celular", true);
+        msg = vl.validaTelefone(p.getTelefone(),"Telefone",true);
+        msg = vl.validaEmail(p.getEmail(),true);
+        msg = vl.validaCharset(p.getSexo(),CharsSexo,"Sexo",true);
+        msg = vl.validaRg(rg,true);
+        msg = vl.validaCPF(cpf,true);
+        msg = vl.validaString(sobrenome, "Sobrenome", 2, 80, false); 
         msg = vl.validaString(nome, "Nome", 2, 40, false); //ultima validação feita ex: nome não pode ficar em branco
-
         if (msg == null) {
             try {
                 ClienteDAO cdao = new ClienteDAO();

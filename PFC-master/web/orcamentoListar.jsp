@@ -9,6 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta charset='utf-8'>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <title>Orçamentos</title>
         <link href="src/css/cliente.css" rel="stylesheet" type="text/css"/>
         <link href="src/css/tabela.css" rel="stylesheet" type="text/css"/>
@@ -61,7 +63,8 @@
                 
              </div>  
          </div> 
-    <script src="src/js/ListarOrcamentos.js"></script>    
-    <script src="src/js/AprovarOrcamento.js">  </script> 
+
+    <script src="src/js/ListarOrcamentos.js" charset="utf-8"></script>    
+    <script src="src/js/AprovarOrcamento.js" charset="utf-8">  </script> 
     </body>
 </html>

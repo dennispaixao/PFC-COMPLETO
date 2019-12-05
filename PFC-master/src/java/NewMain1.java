@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.artenativa.ajax;
-import br.com.artenativa.AutorizacaoDeAcesso.AcessoAdministrativo;
+
 import br.com.artenativa.dao.ItemOrcamentoDAO;
 import br.com.artenativa.dao.MaterialDAO;
 import br.com.artenativa.dao.OrcamentoDAO;
@@ -13,36 +7,34 @@ import br.com.artenativa.model.ItemOrcamento;
 import br.com.artenativa.model.ItemProduto;
 import br.com.artenativa.model.Orcamento;
 import br.com.artenativa.model.Produto;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /**
  *
- * @author Dennis
+ * @author ArteNativa
  */
-public class AprovarOrcamentoAjax extends HttpServlet {
+public class NewMain1 {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+         
         
-        HttpSession sessao = request.getSession();
-        try {
-        if (AcessoAdministrativo.validaSessao(sessao)) { 
-            String id = request.getParameter("id");
+        
+            String id = 19+"";
             int idOrc = Integer.parseInt(id);
             Orcamento o = new Orcamento(idOrc);       
             OrcamentoDAO odao= new OrcamentoDAO();
             o = odao.buscar(o);
-           
+            //o.setEstado(2);
+            // odao.alterar(o);
             //verifica produtos faltantes    
             ItemOrcamentoDAO idao = new ItemOrcamentoDAO();
             ArrayList<ItemOrcamento> itens = idao.listar(o);
@@ -81,8 +73,7 @@ public class AprovarOrcamentoAjax extends HttpServlet {
              String resposta="";
              //se não faltar nenhum material para produção fará as baixas em estoque;
             if(cont==0){
-            o.setEstado(2);
-            odao.alterar(o);  
+               
             ArrayList<ItemOrcamento> pprod2 = new ArrayList();
             for(ItemOrcamento i : itens){
               ItemOrcamento ifalta = new ItemOrcamento();
@@ -130,11 +121,12 @@ public class AprovarOrcamentoAjax extends HttpServlet {
                 }
             }
             
-          
-             response.getWriter().write(resposta);     
-        }   
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(AprovarOrcamentoAjax.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+            System.out.println(resposta);
+            
+            
+        
+           
+                
     }
+    
 }

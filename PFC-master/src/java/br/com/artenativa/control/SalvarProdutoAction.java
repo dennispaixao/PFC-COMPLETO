@@ -59,7 +59,7 @@ public class SalvarProdutoAction implements ICommand {
                 msg = "Produto " + nome + " alterado com sucesso";
                 
             } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(CadastrarProdutoAction.class.getName()).log(Level.SEVERE, null, ex);
+               
 
             }
         }
@@ -78,12 +78,4 @@ public class SalvarProdutoAction implements ICommand {
         return request;
     }
 
-    public static boolean isNumeric(String s) {
-        try {
-            Long.parseLong(s);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-    }
 }

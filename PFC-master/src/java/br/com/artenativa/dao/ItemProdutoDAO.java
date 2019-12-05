@@ -94,7 +94,6 @@ public class ItemProdutoDAO implements ItemProdutoDAOInterface {
                 while (rs.next()) {
                    ItemProduto i= new ItemProduto();
                     i.setIdItem(rs.getInt("id"));
-                    i.setProduto(new ProdutoDAO().buscar(new Produto(rs.getInt("idproduto"))));
                     i.setMaterial(new MaterialDAO().buscar(new Material(rs.getInt("idmaterial"))));
                     i.setQuantidade(rs.getFloat("quantidade"));
                     itens.add(i);

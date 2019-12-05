@@ -92,7 +92,7 @@ const listar = () => {
                             xhr.open('POST', 'AprovarOrcamentoAjax?id='+ orcamentos[i].id);
                             xhr.onload = function() {
                                 if (xhr.status === 200) {
-                                alert("o orçamento foi aprovado");
+                                alert(xhr.responseText);
                                 window.location.href = "orcamentoListar.jsp";
                                 } 
 
@@ -137,7 +137,7 @@ const createRequisitionAjax = (metodo, url, strParams) => {
         //se tudo ocorrer bem como proceder
         if (xhr.status === 200) {
             listar(); 
-            retorno = "xhr.responseText";
+            retorno = xhr.responseText;
            
         } else {
             alert('Request failed.  Returned status of ' + xhr.status);

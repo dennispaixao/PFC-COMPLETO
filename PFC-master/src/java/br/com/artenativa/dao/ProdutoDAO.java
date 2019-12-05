@@ -213,7 +213,7 @@ public class ProdutoDAO implements ProdutoDAOInterface {
             p.setEspessura(rs.getDouble("espessura"));
             p.setQtEstoque(rs.getFloat("qtestoque"));
             p.setEstoqueRaz(rs.getFloat("estoqueraz"));
-            
+            p.setMateriais(new ItemProdutoDAO().listar(p));
                
             
   

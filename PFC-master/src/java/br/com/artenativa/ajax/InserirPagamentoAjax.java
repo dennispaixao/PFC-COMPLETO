@@ -40,7 +40,8 @@ public class InserirPagamentoAjax extends HttpServlet {
 
                     //se valor + qtPaga > Total então qtPaga = Total;senão :  qtPaga = qtPaga + valo
                     OrcamentoDAO odao = new OrcamentoDAO();
-                    Orcamento o = odao.buscar(new Orcamento(idOrc));
+                    Orcamento o = new Orcamento();
+                    o = odao.buscar(new Orcamento(idOrc));
 
                     double troco = 0;
                     if(valor + o.getTotalPago() > o.getValor()){
