@@ -18,7 +18,7 @@ public class ConnectionFactory {
  public static Connection getConexao() throws SQLException, ClassNotFoundException {  
 	     try {  
 	             Class.forName("org.postgresql.Driver");  
-	             return DriverManager.getConnection("jdbc:postgresql://localhost:5432/dbteste","postgres","postgres");  
+	             return DriverManager.getConnection("jdbc:postgresql://localhost:5432/dbpfc","postgres","postgres");  
 	     }  
 	     catch (SQLException e) {
                     throw new RuntimeException("Não foi possível conectar ao banco: Erro SQLException",e);

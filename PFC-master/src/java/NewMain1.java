@@ -28,105 +28,78 @@ public class NewMain1 {
          
         
         
-            String id = 19+"";
+            String id = 4+"";
             int idOrc = Integer.parseInt(id);
             Orcamento o = new Orcamento(idOrc);       
             OrcamentoDAO odao= new OrcamentoDAO();
+            String resposta = "Estoque Insuficiente, necessário: \n";
             o = odao.buscar(o);
-            //o.setEstado(2);
-            // odao.alterar(o);
-            //verifica produtos faltantes    
-            ItemOrcamentoDAO idao = new ItemOrcamentoDAO();
-            ArrayList<ItemOrcamento> itens = idao.listar(o);
-            ArrayList<ItemOrcamento> pprod = new ArrayList();
-            for(ItemOrcamento i : itens){
-              ItemOrcamento ifalta = new ItemOrcamento();
-              ifalta.setProduto(i.getProduto());
-              ifalta.setQuantidade(i.getQuantidade()-i.getProduto().getQtEstoque()<0?0:i.getQuantidade()-i.getProduto().getQtEstoque()); 
-              pprod.add(ifalta);
+            o.setItens(new ItemOrcamentoDAO().listar(o));
+            
+            ArrayList<ItemOrcamento> prodFalta = new ArrayList(); //para baixa de materiais
+            ArrayList<ItemOrcamento> prodTem = new ArrayList(); //para baixa de produtos
+            
+            for(ItemOrcamento io: o.getItens()){
+                float prodEstoque = io.getProduto().getQtEstoque();
+                float qtProdFaltantes= io.getQuantidade() - prodEstoque<0?0:io.getQuantidade() - prodEstoque;
+                float qtProdTem=io.getQuantidade()-qtProdFaltantes;
+                ItemOrcamento itemFalta = new ItemOrcamento();
+                itemFalta.setProduto(io.getProduto());
+                itemFalta.setQuantidade(qtProdFaltantes);
+                ItemOrcamento itemTem=new ItemOrcamento();
+                itemTem.setProduto(io.getProduto());
+                itemTem.setQuantidade(qtProdTem);
+                prodFalta.add(itemFalta);
+                prodTem.add(itemTem);    
             }
-            //verificar material em estoque faltantes
-            ArrayList<ItemOrcamento> mprod = new ArrayList();
-            for(ItemOrcamento ifaltante :pprod){
-               ArrayList<ItemProduto>ifaltantes =new ArrayList();
-                for(ItemProduto ip:ifaltante.getProduto().getMateriais()){
-                    ItemProduto ifalta = new ItemProduto();
-                    ifalta.setMaterial(ip.getMaterial());
-                    ifalta.setQuantidade(ip.getQuantidade()*ifaltante.getQuantidade()-ip.getMaterial().getQtEstoque()<0?0:ip.getQuantidade()*ifaltante.getQuantidade()-ip.getMaterial().getQtEstoque());
-                    ifaltantes.add(ifalta);
-                }
-               Produto prodFalta= new Produto();
-               prodFalta.setNome(ifaltante.getProduto().getNome());
-               prodFalta.setMateriais(ifaltantes);
-               ItemOrcamento itensFalt = new ItemOrcamento();
-               itensFalt.setProduto(prodFalta);
-               itensFalt.setQuantidade(ifaltante.getQuantidade());
-               mprod.add(itensFalt);
-            }
-            //verifica se falta algum material
-            float cont =0;
-            for(ItemOrcamento falt :mprod){
-                for(ItemProduto its: falt.getProduto().getMateriais()){
-                    cont+=its.getQuantidade();
-                }
-            }
-             String resposta="";
-             //se não faltar nenhum material para produção fará as baixas em estoque;
-            if(cont==0){
-               
-            ArrayList<ItemOrcamento> pprod2 = new ArrayList();
-            for(ItemOrcamento i : itens){
-              ItemOrcamento ifalta = new ItemOrcamento();
-              ifalta.setProduto(i.getProduto());
-              ifalta.setQuantidade(i.getQuantidade()-i.getProduto().getQtEstoque()<0?0:i.getQuantidade()-i.getProduto().getQtEstoque()); 
-              float qtestoque= i.getProduto().getQtEstoque();
-              qtestoque= qtestoque-i.getQuantidade()<0?0:qtestoque-i.getQuantidade();
-              pprod2.add(ifalta);  
-              i.getProduto().setQtEstoque(qtestoque);
-              new ProdutoDAO().alterar(i.getProduto());
-            }
-            ArrayList<ItemProduto> hash = new ArrayList();
-            for(ItemOrcamento io:pprod2){
+            
+            ArrayList<ItemProduto> matHash = new ArrayList();
+            for(ItemOrcamento io : prodFalta){
                for(ItemProduto ip:io.getProduto().getMateriais()){
                    boolean tem = false;
-                   for(ItemProduto ihash:hash){
-                       if(ihash.getMaterial().getId()==ip.getMaterial().getId()){
-                            tem=true;
-                            ihash.setQuantidade(ihash.getQuantidade()+(ip.getQuantidade()*io.getQuantidade()));
+                   for(ItemProduto mh: matHash){
+                       if(mh.getMaterial().getId()==ip.getMaterial().getId()){
+                           mh.setQuantidade(mh.getQuantidade()+ip.getQuantidade()*io.getQuantidade());
+                           tem = true;
                        }
                    }
-                   if(!tem){
-                       ItemProduto it= ip;
-                       it.setQuantidade(it.getQuantidade()*io.getQuantidade());
-                       hash.add(ip);
+                   if(tem==false){
+                     ItemProduto ihash= new ItemProduto();
+                     ihash.setMaterial(ip.getMaterial());
+                     ihash.setQuantidade(ip.getQuantidade()*io.getQuantidade());
+                     matHash.add(ihash);
+                    
                    }
                }
             }
-                 
-            for(ItemProduto ihash:hash){
-               float qtestoque = ihash.getMaterial().getQtEstoque();
-               ihash.getMaterial().setQtEstoque(qtestoque-ihash.getQuantidade());
-               new MaterialDAO().alterar(ihash.getMaterial());
-                
+            
+            boolean estoqueok= true;
+            for(ItemProduto i:matHash){
+               if(i.getQuantidade()>i.getMaterial().getQtEstoque()){
+                    estoqueok= false;
+               }
+               resposta+= i.getMaterial().getNome()+": "+i.getQuantidade()+ "\n";
             }
             
-                resposta="orçamento aprovado, baixas em estoques efetuadas";
-            }else{
-                resposta+="Não é possível aprovar o orçamento pois falta material em estoque:\n";
-                for(ItemOrcamento falt :mprod){
-                    resposta+=falt.getProduto().getNome()+": \n";
-                     for(ItemProduto its: falt.getProduto().getMateriais()){
-                        resposta+= its.getMaterial().getNome()+"-"+its.getQuantidade()+"\n";
-                     }
+            System.out.println(estoqueok);
+            if(estoqueok){
+                o.setEstado(4);
+                odao.alterar(o);
+                for(ItemOrcamento i:prodTem){
+                    i.getProduto().setQtEstoque(i.getProduto().getQtEstoque()-i.getQuantidade());
+                    new ProdutoDAO().alterar(i.getProduto());
+                    
+                } 
+                for(ItemProduto i:matHash){
+                    i.getMaterial().setQtEstoque(i.getMaterial().getQtEstoque()-i.getQuantidade());
+                    new MaterialDAO().alterar(i.getMaterial());
+                     
                 }
+                resposta = "orçamento aprovado \n Baixas em estoques efetuadas";
+            } 
+            
+              System.out.println(resposta);
+            
             }
             
-            System.out.println(resposta);
-            
-            
-        
-           
-                
-    }
-    
 }

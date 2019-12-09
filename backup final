@@ -503,6 +503,8 @@ ALTER TABLE ONLY public.orcamento
 ALTER TABLE ONLY public.itemorcamento
     ADD CONSTRAINT idrprod FOREIGN KEY (idproduto) REFERENCES public.produto(id);
 
+insert into usuario(nome, senha, nivel)values('dennis','202cb962ac59075b964b07152d234b70','ADMINISTRADOR');
+
 
 -- Completed on 2019-12-05 16:36:03
 
